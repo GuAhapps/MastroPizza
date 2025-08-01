@@ -282,7 +282,7 @@
           if (state.step === null) {
               return (
                   <div className="bg-brand-card p-6 rounded-md border border-gray-700 my-6 animate-fade-in-up">
-                      <h2 className="text-2xl font-extralight text-brand-accent font-display mb-2">Pide tu MastroPizza</h2>
+                      <h2 className="text-2xl font-normal text-white font-display mb-2" style={{ fontWeight: 400 }}>Pide tu MastroPizza</h2>
                       <p className="text-brand-text-light mb-4 font-light">1- Elige las porciones para empezar a combinar sabores.</p>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           <button onClick={() => onSelectPortions(12)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">12 Porciones <span className="text-xs block font-light">(hasta 4 sabores)</span></button>
@@ -296,14 +296,14 @@
           const price = state.selectedFlavors.length > 0
               ? Math.max(...state.selectedFlavors.map(f => f.price))
               : 0;
+          
+          const isReadyToAdd = state.selectedFlavors.length > 0;
 
           return (
               <div className="bg-brand-card p-6 rounded-md border-2 border-brand-accent my-6 sticky top-[7.5rem] lg:top-[calc(4.5rem+4.5rem)] z-10 animate-fade-in shadow-lg shadow-orange-500/10">
                   <h2 className="text-2xl font-extralight text-brand-accent font-display mb-2">Armando tu MastroPizza</h2>
                   <p className="text-brand-text-light mb-4 font-light">
-                      {state.step === 'flavors' 
-                          ? `2- Elige los gustos (${state.selectedFlavors.length} de ${state.maxFlavors} seleccionados)`
-                          : `2- ¡Lista para agregar al carrito!`}
+                      {`2- Elige los gustos (${state.selectedFlavors.length} de ${state.maxFlavors} seleccionados)`}
                   </p>
                   
                   {state.selectedFlavors.length > 0 && (
@@ -315,7 +315,7 @@
                       </div>
                   )}
                   
-                  {state.step === 'confirm' && (
+                  {isReadyToAdd && (
                        <div className="flex justify-between items-center mb-4">
                         <span className="text-lg font-semibold text-brand-text">Precio Final:</span>
                         <span className="text-2xl font-bold text-brand-accent">{formatPrice(price)}</span>
@@ -326,7 +326,7 @@
                        <button onClick={onCancel} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
                        <button 
                           onClick={() => onAddMastroPizzaToCart(price)} 
-                          disabled={state.step !== 'confirm'} 
+                          disabled={!isReadyToAdd} 
                           className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
                           Agregar al Carrito
                       </button>
@@ -513,8 +513,12 @@
 
         const cartItems = useMemo(() => {
             return Object.entries(cart)
-                .map(([id, quantity]) => ({ ...allItems[id], quantity }))
-                .filter(item => item.id);
+                .map(([id, quantity]) => {
+                    const item = allItems[id];
+                    // Ensure item exists before spreading, convert id to string for startsWith
+                    return item ? { ...item, id: String(item.id), quantity } : null;
+                })
+                .filter(item => item && item.id);
         }, [cart, allItems]);
 
         const subtotal = useMemo(() => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0), [cartItems]);
@@ -536,7 +540,7 @@
 
           const orderDetails = cartItems.map(item => {
             let detail = `- ${item.quantity} x ${item.name} (${formatPrice(item.price)} c/u) - Total: ${formatPrice(item.price * item.quantity)}`;
-            if(item.description && String(item.id).startsWith('mastro-')) { // Add flavors for MastroPizza
+            if(item.description && item.id.startsWith('mastro-')) { // Add flavors for MastroPizza
               detail += `\n  (${item.description})`;
             }
             return detail;
@@ -598,7 +602,7 @@
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-700 last:border-b-0 gap-2">
                         <div className="flex-grow">
                             <p className="font-semibold">{item.name}</p>
-                            {item.description && String(item.id).startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
+                            {item.description && item.id.startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
                             <div className="flex items-center space-x-4 mt-2">
                                 {/* Quantity controller */}
                                 <div className="flex items-center space-x-2 rounded-md bg-gray-800 p-1">
@@ -729,7 +733,7 @@
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
         const [selectedCategory, setSelectedCategory] = useState(Category.Todos);
         const [mastroPizzaState, setMastroPizzaState] = useState({
-          step: null, // null, 'flavors', 'confirm'
+          step: null, // null, 'flavors'
           portions: null,
           maxFlavors: 0,
           selectedFlavors: [],
@@ -812,17 +816,16 @@
 
         const handleAddFlavorToMastroPizza = (pizzaItem) => {
             setMastroPizzaState(prevState => {
-                if (prevState.selectedFlavors.length >= prevState.maxFlavors) return prevState;
+                if (prevState.selectedFlavors.length >= prevState.maxFlavors) {
+                    return prevState;
+                }
 
                 const newFlavors = [...prevState.selectedFlavors, pizzaItem];
-                const isComplete = newFlavors.length === prevState.maxFlavors;
-
                 mastroPizzaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                 return {
                     ...prevState,
                     selectedFlavors: newFlavors,
-                    step: isComplete ? 'confirm' : 'flavors',
                 };
             });
         };
@@ -884,7 +887,7 @@
                          onAdd={setItemToQuickAdd}
                          selectedCategory={selectedCategory}
                          onAddFlavor={handleAddFlavorToMastroPizza}
-                         isMastroPizzaMode={mastroPizzaState.step === 'flavors' || mastroPizzaState.step === 'confirm'}
+                         isMastroPizzaMode={mastroPizzaState.step === 'flavors'}
                        />
                      )}
                    </main>
