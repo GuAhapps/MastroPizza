@@ -135,7 +135,6 @@
       // --- DATA ---
       const Category = {
         Todos: 'Todos',
-        Promos: 'Promos',
         Pizzas: 'Pizzas',
         Hamburguesas: 'Hamburguesas',
         Sanguches: 'Sánguches',
@@ -153,11 +152,6 @@
         { id: 6, name: 'Hamburguesa Doble Cheddar', category: Category.Hamburguesas, description: 'Doble medallón de carne, doble porción de queso cheddar y panceta crujiente.', price: 100, ingredients: ['Doble carne de res', 'Pan brioche', 'Queso cheddar', 'Panceta', 'Pepinillos'], prepTime: '15-20 min', imageUrls: ['https://media-cdn.tripadvisor.com/media/photo-s/1c/c7/15/d1/holy-cheese-doble-hamburguesa.jpg']},
         { id: 7, name: 'Hamburguesa Criolla', category: Category.Hamburguesas, description: 'Con provoleta grillada, morrones asados y salsa criolla.', price: 100, ingredients: ['Carne de res', 'Pan rústico', 'Queso provoleta', 'Morrones asados', 'Huevo frito', 'Salsa criolla'], prepTime: '20-25 min', imageUrls: ['https://i.pinimg.com/1200x/03/82/15/0382153476c9ca4d2b7dfe4b69032bf7.jpg']},
         { id: 8, name: 'Hamburguesa Veggie', category: Category.Hamburguesas, description: 'Medallón de lentejas y champiñones, con rúcula, tomate y mayonesa de palta.', price: 100, ingredients: ['Medallón de lentejas', 'Pan integral', 'Rúcula', 'Tomate', 'Mayonesa de palta', 'Cebolla morada'], prepTime: '15-20 min', imageUrls: ['https://www.conasi.eu/blog/wp-content/uploads/2022/05/hamburguesa-vegana-1.jpg']},
-        // Promos
-        { id: 13, name: 'Promo Pizza para 5 Personas', category: Category.Promos, description: 'Ideal para compartir. Incluye 2 pizzas de muzzarella, 1 pizza especial, gaseosa grande y postre.', price: 100, ingredients: ['2 Pizzas grandes muzzarella (8 porciones c/u)', '1 Pizza especial (jamón y morrones o fugazzeta rellena)', '1 gaseosa de 1.5L o 2L', '1 postre helado chico (500g) o flan casero x5'], prepTime: '30-40 min', imageUrls: ['https://images.pexels.com/photos/905847/pexels-photo-905847.jpeg']},
-        { id: 14, name: 'Promo Empanadas para 4', category: Category.Promos, description: 'Un combo de 24 empanadas surtidas con nuestras salsitas caseras y una gaseosa grande para acompañar.', price: 100, ingredients: ['24 empanadas surtidas (carne, pollo, jamón y queso, verdura)', '4 salsitas caseras (ají, chimichurri, criolla, etc.)', '1 gaseosa de 1.5L'], prepTime: '20-25 min', imageUrls: ['https://cuk-it.com/wp-content/uploads/2024/05/empanadas-carne-cuchillo-thumb-200x200.webp']},
-        { id: 15, name: 'Promo Pizza y Hamburguesas', category: Category.Promos, description: 'La combinación perfecta: 2 pizzas grandes y 4 hamburguesas completas con papas y gaseosa.', price: 100, ingredients: ['2 Pizzas grandes (1 muzzarella + 1 especial a elección)', '4 Hamburguesas completas', '1 porción de papas grandes o 2 medianas', '1 gaseosa de 2L'], prepTime: '30-40 min', imageUrls: ['https://thumbs.dreamstime.com/b/pizza-y-hamburguesa-con-fondo-negro-vista-superior-foto-de-alta-calidad-187909343.jpg']},
-        { id: 16, name: 'Mega Promo 5 Hamburguesas', category: Category.Promos, description: '¡Un festín! 5 hamburguesas completas con papas fritas, salsas y gaseosa para compartir.', price: 100, ingredients: ['5 Hamburguesas completas', '2 porciones grandes de papas fritas', '5 salsas individuales', '1 gaseosa de 2L'], prepTime: '25-30 min', imageUrls: ['https://img-global.cpcdn.com/recipes/90033ff6a172548a/640x640sq80/photo.webp']},
         // Sánguches
         { id: 17, name: 'Sánguche de Milanesa Completo', category: Category.Sanguches, description: 'Milanesa de ternera, lechuga, tomate, jamón, queso y huevo frito en pan francés.', price: 100, ingredients: ['Pan francés', 'Milanesa de ternera', 'Lechuga', 'Tomate', 'Jamón', 'Queso', 'Huevo frito'], prepTime: '15-20 min', imageUrls: ['https://www.tafiviejo.gob.ar/fotos/cache/notas/2024/10/08/830x465_241008004008_43152.jpg']},
         { id: 18, name: 'Sánguche de Lomito', category: Category.Sanguches, description: 'Bife de lomo tierno, lechuga, tomate, jamón, queso, huevo y mayonesa casera.', price: 100, ingredients: ['Pan árabe', 'Bife de lomo', 'Lechuga', 'Tomate', 'Jamón', 'Queso', 'Huevo frito', 'Mayonesa'], prepTime: '15-20 min', imageUrls: ['https://www.clarin.com/img/2021/07/19/hgA-CEG32_1256x620__2.jpg']},
@@ -214,7 +208,7 @@
       }
       
       function CategoryNav({ selectedCategory, setSelectedCategory }) {
-        const categories = [Category.Todos, Category.Promos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
+        const categories = [Category.Todos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
         const navRef = useRef(null);
 
         useEffect(() => {
@@ -440,7 +434,7 @@
 
       function MenuPage({ onSelectItem, onAdd, selectedCategory, onAddFlavor, isMastroPizzaMode }) {
         const renderAllItems = () => {
-            const categoryOrder = [Category.Promos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
+            const categoryOrder = [Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
             
             return (
                 <div className="p-4 space-y-8">
@@ -867,7 +861,7 @@
                 <div className={`${view === 'checkout' ? 'hidden' : 'block'} lg:block`}>
                    {view !== 'about' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
                    
-                   {view === 'menu' && (
+                   {view === 'menu' && (selectedCategory === Category.Todos || selectedCategory === Category.Pizzas) && (
                      <div ref={mastroPizzaRef} className="px-4 md:px-0">
                          <MastroPizzaBuilder 
                              state={mastroPizzaState}
