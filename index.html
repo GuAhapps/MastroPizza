@@ -282,11 +282,7 @@
           if (state.step === null) {
               return (
                   <div className="bg-brand-card p-6 rounded-md border border-gray-700 my-6 animate-fade-in-up">
-                      <h2 className="text-2xl font-normal font-display mb-2 text-brand-accent">
-                        <span>Pide tu </span>
-                        <span className="text-white">Mastro</span>
-                        <span>Pizza</span>
-                      </h2>
+                      <h2 className="text-2xl font-extralight text-brand-accent font-display mb-2">Pide tu MastroPizza</h2>
                       <p className="text-brand-text-light mb-4 font-light">1- Elige las porciones para empezar a combinar sabores.</p>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                           <button onClick={() => onSelectPortions(12)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">12 Porciones <span className="text-xs block font-light">(hasta 4 sabores)</span></button>
@@ -540,7 +536,7 @@
 
           const orderDetails = cartItems.map(item => {
             let detail = `- ${item.quantity} x ${item.name} (${formatPrice(item.price)} c/u) - Total: ${formatPrice(item.price * item.quantity)}`;
-            if(item.description && item.id.startsWith('mastro-')) { // Add flavors for MastroPizza
+            if(item.description && String(item.id).startsWith('mastro-')) { // Add flavors for MastroPizza
               detail += `\n  (${item.description})`;
             }
             return detail;
@@ -602,7 +598,7 @@
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-700 last:border-b-0 gap-2">
                         <div className="flex-grow">
                             <p className="font-semibold">{item.name}</p>
-                            {item.description && item.id.startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
+                            {item.description && String(item.id).startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
                             <div className="flex items-center space-x-4 mt-2">
                                 {/* Quantity controller */}
                                 <div className="flex items-center space-x-2 rounded-md bg-gray-800 p-1">
@@ -773,7 +769,7 @@
             if (quantity <= 0) {
               delete newCart[itemId];
               // Also remove from custom items if it exists there
-              if (itemId.startsWith('mastro-')) {
+              if (String(itemId).startsWith('mastro-')) {
                   setCustomItems(prevCustom => {
                       const newCustom = {...prevCustom};
                       delete newCustom[itemId];
