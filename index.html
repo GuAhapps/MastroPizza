@@ -52,7 +52,7 @@
       body {
         font-family: 'Montserrat', sans-serif;
         font-weight: 300;
-        background-image: url('https://ia902903.us.archive.org/23/items/fondo-mesa-de-trabajo-1_202508/fondo_Mesa%20de%20trabajo%201.jpg');
+        background-image: url('https://ia601009.us.archive.org/25/items/fondo-mesa-de-trabajo-1-mesa-de-trabajo-1/fondo_Mesa%20de%20trabajo%201_Mesa%20de%20trabajo%201.jpg');
         background-size: cover;
         background-position: center center;
         background-attachment: fixed;
@@ -195,8 +195,10 @@
       function Header() {
         const logoUrl = "https://ia601008.us.archive.org/22/items/logo-blanco-y-naranja-02/logo%20blanco%20y%20naranja-02.svg";
         return (
-          <header className="bg-brand-header border-b border-gray-700 sticky top-0 z-20 flex items-center justify-center h-16">
-            <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto"/>
+          <header className="bg-brand-header border-b border-gray-700 sticky top-0 z-20">
+            <div className="max-w-md mx-auto flex items-center justify-center h-16">
+              <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto"/>
+            </div>
           </header>
         );
       }
@@ -216,21 +218,23 @@
 
         return (
             <nav className="sticky top-16 bg-brand-header z-10 border-b border-t border-gray-700">
-                <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
-                    {categories.map(category => (
-                        <button
-                            key={category}
-                            data-category={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`px-3 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200 border-b-2 ${
-                                selectedCategory === category 
-                                ? 'border-brand-accent text-brand-accent' 
-                                : 'border-transparent text-brand-text-light hover:text-brand-accent'
-                            }`}
-                        >
-                            {category}
-                        </button>
-                    ))}
+                <div className="max-w-md mx-auto">
+                  <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
+                      {categories.map(category => (
+                          <button
+                              key={category}
+                              data-category={category}
+                              onClick={() => setSelectedCategory(category)}
+                              className={`px-3 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200 border-b-2 ${
+                                  selectedCategory === category 
+                                  ? 'border-brand-accent text-brand-accent' 
+                                  : 'border-transparent text-brand-text-light hover:text-brand-accent'
+                              }`}
+                          >
+                              {category}
+                          </button>
+                      ))}
+                  </div>
                 </div>
             </nav>
         );
@@ -700,13 +704,11 @@
 
         return (
           <div className="min-h-screen">
-            <div className="max-w-md mx-auto">
-              <Header />
-              {view === 'menu' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
-              <main className="pb-24">
-                {renderView()}
-              </main>
-            </div>
+            <Header />
+            {view === 'menu' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
+            <main className="pb-24 max-w-md mx-auto">
+              {renderView()}
+            </main>
             
             <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} onAddToCart={addToCart} />
             <AddToCartModal item={itemToQuickAdd} onClose={() => setItemToQuickAdd(null)} onConfirm={addToCart} />
