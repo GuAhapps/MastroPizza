@@ -17,6 +17,7 @@
               'brand-text': '#F3F4F6',
               'brand-text-light': '#9CA3AF',
               'brand-accent': '#F97316', // Orange-500
+              'brand-teal': '#14B8A6', // Teal-500 for MastroPizza
             },
             fontWeight: {
               'extralight': 200,
@@ -144,9 +145,9 @@
       const menuItems = [
         // Pizzas
         { id: 1, name: 'Pizza Mozzarella', category: Category.Pizzas, description: 'La clásica pizza con abundante mozzarella y salsa de tomate casera.', price: 100, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Aceitunas verdes', 'Orégano'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
-        { id: 2, name: 'Pizza Napolitana', category: Category.Pizzas, description: 'Mozzarella, rodajas de tomate fresco y un toque de ajo y albahaca.', price: 100, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Tomate fresco', 'Ajo', 'Albahaca', 'Aceitunas'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
-        { id: 3, name: 'Pizza Fugazzeta', category: Category.Pizzas, description: 'Una delicia para los amantes de la cebolla, con mozzarella y un toque de aceite de oliva.', price: 100, ingredients: ['Masa de pizza', 'Queso mozzarella', 'Cebolla blanca', 'Aceite de oliva', 'Orégano'], prepTime: '25-30 min', imageUrls: ['https://tofuu.getjusto.com/orioneat-local/resized2/8BmmxWrSsXHMr9Kpk-300-x.webp']},
-        { id: 4, name: 'Pizza Calabresa', category: Category.Pizzas, description: 'Sabor intenso con longaniza calabresa, mozzarella y ají molido.', price: 100, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Longaniza calabresa', 'Ají molido', 'Aceitunas negras'], prepTime: '25-30 min', imageUrls: ['https://speedy.uenicdn.com/4c6d58bf-c626-4ade-85a5-5390e842a41a/c440_a/image/upload/v1612909110/business/f919def1-92cc-4aaa-906d-07447acb469b.jpg']},
+        { id: 2, name: 'Pizza Napolitana', category: Category.Pizzas, description: 'Mozzarella, rodajas de tomate fresco y un toque de ajo y albahaca.', price: 120, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Tomate fresco', 'Ajo', 'Albahaca', 'Aceitunas'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
+        { id: 3, name: 'Pizza Fugazzeta', category: Category.Pizzas, description: 'Una delicia para los amantes de la cebolla, con mozzarella y un toque de aceite de oliva.', price: 110, ingredients: ['Masa de pizza', 'Queso mozzarella', 'Cebolla blanca', 'Aceite de oliva', 'Orégano'], prepTime: '25-30 min', imageUrls: ['https://tofuu.getjusto.com/orioneat-local/resized2/8BmmxWrSsXHMr9Kpk-300-x.webp']},
+        { id: 4, name: 'Pizza Calabresa', category: Category.Pizzas, description: 'Sabor intenso con longaniza calabresa, mozzarella y ají molido.', price: 130, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Longaniza calabresa', 'Ají molido', 'Aceitunas negras'], prepTime: '25-30 min', imageUrls: ['https://speedy.uenicdn.com/4c6d58bf-c626-4ade-85a5-5390e842a41a/c440_a/image/upload/v1612909110/business/f919def1-92cc-4aaa-906d-07447acb469b.jpg']},
         // Hamburguesas
         { id: 5, name: 'Hamburguesa Clásica', category: Category.Hamburguesas, description: 'Carne de primera, lechuga, tomate y nuestra salsa especial en pan brioche.', price: 100, ingredients: ['Carne de res', 'Pan brioche', 'Lechuga', 'Tomate', 'Cebolla', 'Salsa especial'], prepTime: '15-20 min', imageUrls: ['https://jetextramar.com/wp-content/uploads/2021/07/congelados-receta-hamburguesa-de-pollo-1024x768.jpg']},
         { id: 6, name: 'Hamburguesa Doble Cheddar', category: Category.Hamburguesas, description: 'Doble medallón de carne, doble porción de queso cheddar y panceta crujiente.', price: 100, ingredients: ['Doble carne de res', 'Pan brioche', 'Queso cheddar', 'Panceta', 'Pepinillos'], prepTime: '15-20 min', imageUrls: ['https://media-cdn.tripadvisor.com/media/photo-s/1c/c7/15/d1/holy-cheese-doble-hamburguesa.jpg']},
@@ -192,12 +193,21 @@
 
       // --- COMPONENTS ---
 
-      function Header() {
+      function Header({ setView }) {
         const logoUrl = "https://ia601008.us.archive.org/22/items/logo-blanco-y-naranja-02/logo%20blanco%20y%20naranja-02.svg";
         return (
           <header className="bg-brand-header border-b border-gray-700 sticky top-0 z-20">
-            <div className="max-w-md mx-auto flex items-center justify-center h-16">
+            {/* Mobile Header */}
+            <div className="max-w-md mx-auto flex items-center justify-center h-[4.5rem] lg:hidden">
               <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto"/>
+            </div>
+            {/* Desktop Header */}
+            <div className="hidden lg:flex max-w-7xl mx-auto items-center justify-between h-[4.5rem] px-8">
+              <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto cursor-pointer" onClick={() => setView('menu')} />
+              <nav className="flex items-center space-x-6">
+                  <button onClick={() => setView('menu')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Menú</button>
+                  <button onClick={() => setView('about')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Nosotros</button>
+              </nav>
             </div>
           </header>
         );
@@ -217,8 +227,8 @@
         }, [selectedCategory]);
 
         return (
-            <nav className="sticky top-16 bg-brand-header z-10 border-b border-t border-gray-700">
-                <div className="max-w-md mx-auto">
+            <nav className="sticky top-[4.5rem] lg:top-0 bg-brand-header z-10 border-b border-t border-gray-700 lg:rounded-t-md">
+                <div className="max-w-7xl mx-auto">
                   <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
                       {categories.map(category => (
                           <button
@@ -240,22 +250,93 @@
         );
       }
       
-      function MenuItemCard({ item, onSelect, onAdd }) {
-        return (
-          <div className="bg-brand-card rounded-md border border-gray-700 overflow-hidden flex flex-col animate-fade-in-up transition-all hover:border-brand-accent/50">
-            <img src={item.imageUrls[0]} alt={item.name} className="w-full h-40 object-cover cursor-pointer" onClick={() => onSelect(item)} />
-            <div className="p-4 flex flex-col flex-grow">
-              <h3 className="text-lg font-extralight text-brand-text flex-grow">{item.name}</h3>
-              <p className="text-brand-text-light text-sm mb-2 font-light">{item.description}</p>
-              <div className="flex justify-between items-center mt-auto pt-2">
-                <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
-                <button onClick={() => onAdd(item)} className="bg-brand-accent text-white px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
-                  Agregar
-                </button>
+      function MenuItemCard({ item, onSelect, onAdd, onAddFlavor, isMastroPizzaMode = false }) {
+          const isPizza = item.category === Category.Pizzas;
+          return (
+            <div className={`bg-brand-card rounded-md border border-gray-700 overflow-hidden flex flex-col animate-fade-in-up transition-all ${isMastroPizzaMode && isPizza ? 'hover:border-brand-teal/50' : 'hover:border-brand-accent/50'}`}>
+              <img src={item.imageUrls[0]} alt={item.name} className="w-full h-40 object-cover cursor-pointer" onClick={() => onSelect(item)} />
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-extralight text-brand-text flex-grow">{item.name}</h3>
+                <p className="text-brand-text-light text-sm mb-2 font-light">{item.description}</p>
+                <div className="flex justify-between items-center mt-auto pt-2">
+                  <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
+                  {isMastroPizzaMode ? (
+                      <button 
+                        onClick={() => onAddFlavor(item)} 
+                        disabled={!isPizza}
+                        className="bg-brand-teal text-white px-4 py-2 rounded-md font-semibold hover:bg-teal-600 transition-all transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                        Añadir Sabor
+                      </button>
+                  ) : (
+                      <button onClick={() => onAdd(item)} className="bg-brand-accent text-white px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
+                        Agregar
+                      </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        );
+          );
+      }
+
+      function MastroPizzaBuilder({ state, onSelectPortions, onAddMastroPizzaToCart, onCancel }) {
+          if (state.step === null) {
+              return (
+                  <div className="bg-brand-card p-6 rounded-md border border-gray-700 my-6 animate-fade-in-up">
+                      <h2 className="text-2xl font-normal font-display mb-2 text-brand-accent">
+                        <span>Pide tu </span>
+                        <span className="text-white">Mastro</span>
+                        <span>Pizza</span>
+                      </h2>
+                      <p className="text-brand-text-light mb-4 font-light">1- Elige las porciones para empezar a combinar sabores.</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <button onClick={() => onSelectPortions(12)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">12 Porciones <span className="text-xs block font-light">(hasta 4 sabores)</span></button>
+                          <button onClick={() => onSelectPortions(6)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">6 Porciones <span className="text-xs block font-light">(hasta 2 sabores)</span></button>
+                          <button onClick={() => onSelectPortions(3)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">3 Porciones <span className="text-xs block font-light">(1 sabor)</span></button>
+                      </div>
+                  </div>
+              );
+          }
+          
+          const price = state.selectedFlavors.length > 0
+              ? Math.max(...state.selectedFlavors.map(f => f.price))
+              : 0;
+
+          return (
+              <div className="bg-brand-card p-6 rounded-md border-2 border-brand-accent my-6 sticky top-[7.5rem] lg:top-[calc(4.5rem+4.5rem)] z-10 animate-fade-in shadow-lg shadow-orange-500/10">
+                  <h2 className="text-2xl font-extralight text-brand-accent font-display mb-2">Armando tu MastroPizza</h2>
+                  <p className="text-brand-text-light mb-4 font-light">
+                      {state.step === 'flavors' 
+                          ? `2- Elige los gustos (${state.selectedFlavors.length} de ${state.maxFlavors} seleccionados)`
+                          : `2- ¡Lista para agregar al carrito!`}
+                  </p>
+                  
+                  {state.selectedFlavors.length > 0 && (
+                      <div className="mb-4 space-y-2 bg-gray-900/50 p-3 rounded-md">
+                          <p className="font-semibold text-brand-text">Sabores elegidos:</p>
+                          <ul className="list-disc list-inside text-brand-text-light text-sm pl-2">
+                              {state.selectedFlavors.map((flavor, index) => <li key={`${flavor.id}-${index}`}>{flavor.name}</li>)}
+                          </ul>
+                      </div>
+                  )}
+                  
+                  {state.step === 'confirm' && (
+                       <div className="flex justify-between items-center mb-4">
+                        <span className="text-lg font-semibold text-brand-text">Precio Final:</span>
+                        <span className="text-2xl font-bold text-brand-accent">{formatPrice(price)}</span>
+                      </div>
+                  )}
+
+                  <div className="grid grid-cols-2 gap-4">
+                       <button onClick={onCancel} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
+                       <button 
+                          onClick={() => onAddMastroPizzaToCart(price)} 
+                          disabled={state.step !== 'confirm'} 
+                          className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                          Agregar al Carrito
+                      </button>
+                  </div>
+              </div>
+          );
       }
 
       function AddToCartModal({ item, onClose, onConfirm }) {
@@ -361,7 +442,7 @@
         );
       }
 
-      function MenuPage({ onSelectItem, onAdd, selectedCategory }) {
+      function MenuPage({ onSelectItem, onAdd, selectedCategory, onAddFlavor, isMastroPizzaMode }) {
         const renderAllItems = () => {
             const categoryOrder = [Category.Promos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
             
@@ -374,9 +455,9 @@
                         return (
                             <section key={category} aria-labelledby={`category-title-${category}`}>
                                 <h2 id={`category-title-${category}`} className="font-display text-2xl font-extralight text-brand-accent pb-2 mb-6 border-b-2 border-brand-accent/30">{category}</h2>
-                                <div className="grid grid-cols-1 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {itemsInCategory.map(item => (
-                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
+                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddFlavor={onAddFlavor} isMastroPizzaMode={isMastroPizzaMode} />
                                     ))}
                                 </div>
                             </section>
@@ -389,9 +470,9 @@
         const renderFilteredItems = () => {
             const filteredItems = menuItems.filter(item => item.category === selectedCategory);
             return (
-                <div className="p-4 grid grid-cols-1 gap-6">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredItems.map(item => (
-                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
+                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddFlavor={onAddFlavor} isMastroPizzaMode={isMastroPizzaMode} />
                     ))}
                 </div>
             );
@@ -406,8 +487,8 @@
       
       function AboutPage({onBack}) {
         return (
-           <div className="p-6 animate-fade-in-up">
-                <button onClick={onBack} className="flex items-center text-brand-accent font-semibold mb-4">
+           <div className="p-4 md:p-6 animate-fade-in-up">
+                <button onClick={onBack} className="flex items-center text-brand-accent font-semibold mb-4 lg:hidden">
                     <ChevronLeftIcon /> Volver al Menú
                 </button>
                 <div className="bg-brand-card p-6 rounded-md border border-gray-700">
@@ -426,17 +507,19 @@
         );
       }
       
-      function CheckoutView({ cart, updateCart, onBack, clearCart }) {
+      function CheckoutView({ cart, updateCart, onBack, clearCart, isDesktop = false, customItems = {} }) {
         const [deliveryMethod, setDeliveryMethod] = useState('delivery'); // 'delivery' or 'pickup'
         const [address, setAddress] = useState('');
         const [customerName, setCustomerName] = useState('');
         const [phone, setPhone] = useState('');
 
+        const allItems = useMemo(() => ({ ...itemsById, ...customItems }), [customItems]);
+
         const cartItems = useMemo(() => {
             return Object.entries(cart)
-                .map(([id, quantity]) => ({...itemsById[id], quantity }))
+                .map(([id, quantity]) => ({ ...allItems[id], quantity }))
                 .filter(item => item.id);
-        }, [cart]);
+        }, [cart, allItems]);
 
         const subtotal = useMemo(() => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0), [cartItems]);
         const total = useMemo(() => subtotal + (deliveryMethod === 'delivery' ? SHIPPING_COST : 0), [subtotal, deliveryMethod]);
@@ -455,9 +538,13 @@
             return;
           }
 
-          const orderDetails = cartItems.map(item => 
-            `- ${item.quantity} x ${item.name} (${formatPrice(item.price)} c/u) - Total: ${formatPrice(item.price * item.quantity)}`
-          ).join('\n');
+          const orderDetails = cartItems.map(item => {
+            let detail = `- ${item.quantity} x ${item.name} (${formatPrice(item.price)} c/u) - Total: ${formatPrice(item.price * item.quantity)}`;
+            if(item.description && item.id.startsWith('mastro-')) { // Add flavors for MastroPizza
+              detail += `\n  (${item.description})`;
+            }
+            return detail;
+          }).join('\n');
           
           let message = `*¡Nuevo Pedido desde la App!* 🍔🍕\n\n`;
           message += `*Cliente:* ${customerName}\n`;
@@ -488,21 +575,25 @@
 
         if (cartItems.length === 0) {
             return (
-                <div className="p-6 text-center animate-fade-in-up">
+                <div className={`p-6 text-center animate-fade-in-up ${isDesktop ? 'bg-brand-card rounded-md border border-gray-700' : ''}`}>
                     <h2 className="text-2xl font-extralight text-brand-text mb-4 font-display">Tu carrito está vacío</h2>
-                    <p className="text-brand-text-light mb-6 font-light">Agrega algunos productos para continuar.</p>
-                    <button onClick={onBack} className="bg-brand-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105">
-                        Ver Menú
-                    </button>
+                    <p className="text-brand-text-light mb-6 font-light">Agrega productos del menú para empezar.</p>
+                    {!isDesktop && (
+                        <button onClick={onBack} className="bg-brand-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105">
+                            Ver Menú
+                        </button>
+                    )}
                 </div>
             )
         }
 
         return (
-          <div className="p-4 animate-fade-in-up">
-              <button onClick={onBack} className="flex items-center text-brand-accent font-semibold mb-4">
-                  <ChevronLeftIcon /> Volver al Menú
-              </button>
+          <div className={`p-4 animate-fade-in-up ${isDesktop ? '' : 'max-w-md mx-auto'}`}>
+              {!isDesktop && (
+                  <button onClick={onBack} className="flex items-center text-brand-accent font-semibold mb-4">
+                      <ChevronLeftIcon /> Volver al Menú
+                  </button>
+              )}
               <h2 className="text-3xl font-extralight font-display text-brand-text mb-6">Finalizar Compra</h2>
 
               <div className="bg-brand-card p-4 rounded-md border border-gray-700 mb-6">
@@ -511,6 +602,7 @@
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-700 last:border-b-0 gap-2">
                         <div className="flex-grow">
                             <p className="font-semibold">{item.name}</p>
+                            {item.description && item.id.startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
                             <div className="flex items-center space-x-4 mt-2">
                                 {/* Quantity controller */}
                                 <div className="flex items-center space-x-2 rounded-md bg-gray-800 p-1">
@@ -612,7 +704,7 @@
         ];
 
         return (
-          <nav className="fixed bottom-0 left-0 right-0 bg-brand-card border-t border-gray-700 z-30">
+          <nav className="fixed bottom-0 left-0 right-0 bg-brand-card border-t border-gray-700 z-30 lg:hidden">
             <div className="flex justify-around max-w-md mx-auto">
               {navItems.map(({ id, label, icon }) => (
                 <button
@@ -636,36 +728,58 @@
       function App() {
         const [view, setView] = useState('menu'); // 'menu', 'about', 'checkout'
         const [cart, setCart] = useState({}); // { itemId: quantity }
+        const [customItems, setCustomItems] = useState({}); // For MastroPizzas
         const [selectedItem, setSelectedItem] = useState(null);
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
         const [selectedCategory, setSelectedCategory] = useState(Category.Todos);
-
+        const [mastroPizzaState, setMastroPizzaState] = useState({
+          step: null, // null, 'flavors', 'confirm'
+          portions: null,
+          maxFlavors: 0,
+          selectedFlavors: [],
+        });
+        const mastroPizzaRef = useRef(null);
 
         useEffect(() => {
           try {
             const savedCart = localStorage.getItem('laEscapaditaCart');
-            if (savedCart) {
-              setCart(JSON.parse(savedCart));
-            }
+            const savedCustomItems = localStorage.getItem('laEscapaditaCustomItems');
+            if (savedCart) setCart(JSON.parse(savedCart));
+            if (savedCustomItems) setCustomItems(JSON.parse(savedCustomItems));
           } catch (error) {
-            console.error("Failed to load cart from localStorage:", error);
+            console.error("Failed to load data from localStorage:", error);
             setCart({});
+            setCustomItems({});
           }
         }, []);
 
         useEffect(() => {
             try {
                 localStorage.setItem('laEscapaditaCart', JSON.stringify(cart));
+                localStorage.setItem('laEscapaditaCustomItems', JSON.stringify(customItems));
             } catch (error) {
-                console.error("Failed to save cart to localStorage:", error);
+                console.error("Failed to save data to localStorage:", error);
             }
-        }, [cart]);
+        }, [cart, customItems]);
+        
+        const handleSetView = (newView) => {
+          setView(newView);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
 
         const updateCart = useCallback((itemId, quantity) => {
           setCart(prevCart => {
             const newCart = { ...prevCart };
             if (quantity <= 0) {
               delete newCart[itemId];
+              // Also remove from custom items if it exists there
+              if (itemId.startsWith('mastro-')) {
+                  setCustomItems(prevCustom => {
+                      const newCustom = {...prevCustom};
+                      delete newCustom[itemId];
+                      return newCustom;
+                  });
+              }
             } else {
               newCart[itemId] = quantity;
             }
@@ -682,37 +796,140 @@
         
         const clearCart = useCallback(() => {
           setCart({});
+          setCustomItems({});
         }, []);
+
+        const handleSelectPortions = (portions) => {
+            let maxFlavors = 0;
+            if (portions === 12) maxFlavors = 4;
+            else if (portions === 6) maxFlavors = 2;
+            else if (portions === 3) maxFlavors = 1;
+            
+            setMastroPizzaState({
+                step: 'flavors',
+                portions: portions,
+                maxFlavors: maxFlavors,
+                selectedFlavors: [],
+            });
+            setSelectedCategory(Category.Pizzas);
+        };
+
+        const handleAddFlavorToMastroPizza = (pizzaItem) => {
+            setMastroPizzaState(prevState => {
+                if (prevState.selectedFlavors.length >= prevState.maxFlavors) return prevState;
+
+                const newFlavors = [...prevState.selectedFlavors, pizzaItem];
+                const isComplete = newFlavors.length === prevState.maxFlavors;
+
+                mastroPizzaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                return {
+                    ...prevState,
+                    selectedFlavors: newFlavors,
+                    step: isComplete ? 'confirm' : 'flavors',
+                };
+            });
+        };
+
+        const handleCancelMastroPizza = () => {
+            setMastroPizzaState({
+                step: null, portions: null, maxFlavors: 0, selectedFlavors: [],
+            });
+        };
+
+        const handleAddMastroPizzaToCart = (price) => {
+            const { portions, selectedFlavors } = mastroPizzaState;
+            if (selectedFlavors.length === 0) return;
+
+            const customId = `mastro-${Date.now()}`;
+            const mastroPizzaItem = {
+                id: customId,
+                name: `MastroPizza ${portions} Porciones`,
+                description: selectedFlavors.map(f => f.name).join(' + '),
+                price: price,
+                category: Category.Pizzas,
+            };
+            
+            setCustomItems(prev => ({...prev, [mastroPizzaItem.id]: mastroPizzaItem }));
+            addToCart(mastroPizzaItem.id, 1);
+            handleCancelMastroPizza();
+        };
+
 
         const cartCount = useMemo(() => Object.values(cart).reduce((sum, q) => sum + q, 0), [cart]);
 
-        const renderView = () => {
-          switch (view) {
-            case 'checkout':
-              return <CheckoutView cart={cart} updateCart={updateCart} onBack={() => setView('menu')} clearCart={clearCart} />;
-            case 'about':
-              return <AboutPage onBack={() => setView('menu')} />;
-            case 'menu':
-            default:
-              return <MenuPage 
-                        onSelectItem={setSelectedItem} 
-                        onAdd={setItemToQuickAdd}
-                        selectedCategory={selectedCategory}
-                      />;
-          }
-        };
-
         return (
           <div className="min-h-screen">
-            <Header />
-            {view === 'menu' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
-            <main className="pb-24 max-w-md mx-auto">
-              {renderView()}
-            </main>
+            <Header setView={handleSetView} />
             
+            <div className="max-w-7xl mx-auto lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-4">
+              <div className="lg:col-span-7 xl:col-span-8">
+                {/* Main content: Menu or About page */}
+                <div className={`${view === 'checkout' ? 'hidden' : 'block'} lg:block`}>
+                   {view !== 'about' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
+                   
+                   {view === 'menu' && (
+                     <div ref={mastroPizzaRef} className="px-4 md:px-0">
+                         <MastroPizzaBuilder 
+                             state={mastroPizzaState}
+                             onSelectPortions={handleSelectPortions}
+                             onAddMastroPizzaToCart={handleAddMastroPizzaToCart}
+                             onCancel={handleCancelMastroPizza}
+                         />
+                     </div>
+                   )}
+
+                   <main className="pb-24 lg:pb-12">
+                     {view === 'about' ? (
+                       <AboutPage onBack={() => handleSetView('menu')} />
+                     ) : (
+                       <MenuPage 
+                         onSelectItem={setSelectedItem} 
+                         onAdd={setItemToQuickAdd}
+                         selectedCategory={selectedCategory}
+                         onAddFlavor={handleAddFlavorToMastroPizza}
+                         isMastroPizzaMode={mastroPizzaState.step === 'flavors' || mastroPizzaState.step === 'confirm'}
+                       />
+                     )}
+                   </main>
+                </div>
+                
+                {/* Mobile-only Fullscreen Checkout */}
+                {view === 'checkout' && (
+                  <div className="lg:hidden">
+                    <CheckoutView
+                      cart={cart}
+                      updateCart={updateCart}
+                      onBack={() => handleSetView('menu')}
+                      clearCart={clearCart}
+                      isDesktop={false}
+                      customItems={customItems}
+                    />
+                  </div>
+                )}
+              </div>
+              
+              {/* Desktop Sidebar */}
+              <aside className="hidden lg:block lg:col-span-5 xl:col-span-4 py-6 lg:pr-4">
+                <div className="sticky top-[calc(4.5rem+1.5rem)]">
+                  <CheckoutView
+                    cart={cart}
+                    updateCart={updateCart}
+                    onBack={() => {}} // No-op for desktop
+                    clearCart={clearCart}
+                    isDesktop={true}
+                    customItems={customItems}
+                  />
+                </div>
+              </aside>
+            </div>
+
+            {/* Modals are global */}
             <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} onAddToCart={addToCart} />
             <AddToCartModal item={itemToQuickAdd} onClose={() => setItemToQuickAdd(null)} onConfirm={addToCart} />
-            <BottomNav view={view} setView={setView} cartCount={cartCount} />
+            
+            {/* Mobile-only Bottom Nav */}
+            <BottomNav view={view} setView={handleSetView} cartCount={cartCount} />
           </div>
         );
       }
