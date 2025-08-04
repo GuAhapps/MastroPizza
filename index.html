@@ -145,7 +145,7 @@
         // MastroPizzas
         {
           id: 901,
-          name: 'Mastropizza de 12 porciones, 4 sabores',
+          name: 'Mastropizza de 12 porciones, hasta 4 sabores',
           category: Category.Pizzas,
           description: '¡Pizza gigante para compartir! Elige hasta 4 sabores distintos. El precio final corresponde al sabor de mayor valor.',
           price: 130, // Represents 'Desde' price. Logic will calculate final price.
@@ -155,7 +155,7 @@
         },
         {
           id: 902,
-          name: 'Mastropizza de 6 porciones, 2 sabores',
+          name: 'Mastropizza de 6 porciones, hasta 2 sabores',
           category: Category.Pizzas,
           description: '¡Mitad y mitad! Elige hasta 2 sabores. El precio final corresponde al sabor de mayor valor.',
           price: 130,
@@ -296,34 +296,55 @@
       function MastroBuilderModal({ baseItem, onClose, onConfirm }) {
         if (!baseItem) return null;
         
-        const [selectedFlavors, setSelectedFlavors] = useState([]); // Array of {item, portions}
+        const [selectedFlavors, setSelectedFlavors] = useState({}); // e.g., { 1: 3, 4: 3 } -> { itemId: portions }
         
         const pizzaFlavors = useMemo(() => menuItems.filter(item => item.category === Category.Pizzas && !item.isMastro), []);
 
         const totalPortions = baseItem.portions;
-        const filledPortions = selectedFlavors.reduce((sum, f) => sum + f.portions, 0);
+        const filledPortions = Object.values(selectedFlavors).reduce((sum, p) => sum + p, 0);
         const remainingPortions = totalPortions - filledPortions;
         const isReadyToAdd = filledPortions === totalPortions;
         
-        const price = selectedFlavors.length > 0
-          ? Math.max(...selectedFlavors.map(f => f.item.price))
+        const price = Object.keys(selectedFlavors).length > 0
+          ? Math.max(...Object.keys(selectedFlavors).map(id => itemsById[id].price))
           : baseItem.price;
 
         const handleAddFlavor = (item, portions) => {
           if (portions > remainingPortions) return;
-          setSelectedFlavors(prev => [...prev, { item, portions }]);
+          // Each flavor can only be added once.
+          setSelectedFlavors(prev => ({ ...prev, [item.id]: portions }));
         };
         
-        const handleRemoveFlavor = (index) => {
-          setSelectedFlavors(prev => prev.filter((_, i) => i !== index));
+        const handleRemoveFlavor = (itemId) => {
+          setSelectedFlavors(prev => {
+            const newFlavors = { ...prev };
+            delete newFlavors[itemId];
+            return newFlavors;
+          });
         };
 
         const handleConfirm = () => {
+          const finalSelectedFlavors = Object.entries(selectedFlavors).map(([id, portions]) => ({
+            item: itemsById[id],
+            portions: portions,
+          }));
+
           onConfirm({
             baseItem: baseItem,
-            selectedFlavors: selectedFlavors,
+            selectedFlavors: finalSelectedFlavors,
             price: price,
           });
+        };
+
+        const getPortionLabel = (portions, total) => {
+            if (total === 3) return 'Entera';
+            if (total === 6) return '½';
+            if (total === 12) {
+                if (portions === 3) return '¼';
+                if (portions === 6) return '½';
+                if (portions === 9) return '¾';
+            }
+            return `${portions} porc.`; // Fallback
         };
 
         const getPortionButtons = (item) => {
@@ -344,7 +365,7 @@
                 key={btn.portions}
                 onClick={() => handleAddFlavor(item, btn.portions)}
                 disabled={btn.portions > remainingPortions}
-                className="bg-brand-teal text-white px-3 py-1 text-xs rounded-md font-semibold hover:bg-teal-600 transition-all disabled:bg-gray-600/70 disabled:cursor-not-allowed whitespace-nowrap"
+                className="bg-brand-teal text-white px-5 py-3 text-base rounded-md font-semibold hover:bg-teal-600 transition-all disabled:bg-gray-600/70 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 + {btn.label}
               </button>
@@ -353,54 +374,53 @@
 
         return (
           <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center animate-fade-in p-4" onClick={onClose}>
-            <div className="bg-brand-card rounded-md shadow-xl w-full max-w-4xl h-[90vh] flex flex-col animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
+            <div className="bg-brand-card rounded-md shadow-xl w-full max-w-2xl h-[90vh] flex flex-col animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
               {/* Header */}
               <div className="p-4 border-b border-gray-700 flex-shrink-0">
                 <h2 className="text-2xl font-extralight text-brand-accent font-display">{baseItem.name}</h2>
                 <p className="text-brand-text-light font-light">
-                  Elige los sabores para completar tu pizza. ({filledPortions} de {totalPortions} porciones seleccionadas)
+                  {baseItem.portions === 3 ? 'Elige el sabor para tu pizza.' : 'Elige los sabores para completar tu pizza.'}
                 </p>
               </div>
 
-              {/* Main Content */}
-              <div className="flex-grow overflow-hidden grid grid-cols-1 md:grid-cols-2">
-                {/* Flavor List */}
-                <div className="overflow-y-auto p-4 space-y-3 no-scrollbar">
-                  {pizzaFlavors.map(flavor => (
-                    <div key={flavor.id} className="bg-gray-800 p-3 rounded-md flex justify-between items-center border border-gray-700">
-                      <div>
-                        <h4 className="font-semibold text-brand-text">{flavor.name}</h4>
-                        <p className="text-sm text-brand-text-light font-light">{formatPrice(flavor.price)}</p>
-                      </div>
-                      <div className="flex gap-2">
-                        {getPortionButtons(flavor)}
+              {/* Main Content: Flavor List */}
+              <div className="flex-grow overflow-y-auto p-4 space-y-3 no-scrollbar">
+                {pizzaFlavors.map(flavor => {
+                  const selectedPortion = selectedFlavors[flavor.id];
+                  const isSelected = !!selectedPortion;
+
+                  return (
+                    <div 
+                      key={flavor.id} 
+                      className={`p-3 rounded-md flex flex-col border transition-all duration-300 ${isSelected ? 'bg-brand-accent/20 border-brand-accent' : 'bg-gray-800 border-gray-700'}`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <div className="pr-4">
+                          <h4 className="font-semibold text-brand-text">{flavor.name}</h4>
+                          <p className="text-sm text-brand-text-light font-light">{formatPrice(flavor.price)}</p>
+                        </div>
+                        <div className="flex gap-3 items-center flex-shrink-0">
+                          {isSelected ? (
+                              <div className="flex items-center gap-3 animate-fade-in">
+                                  <span className="text-lg font-semibold text-brand-accent whitespace-nowrap">
+                                      {`Seleccionado: ${getPortionLabel(selectedPortion, totalPortions)}`}
+                                  </span>
+                                  <button
+                                      onClick={() => handleRemoveFlavor(flavor.id)}
+                                      className="bg-red-500/20 text-red-400 px-5 py-3 text-base rounded-md font-semibold hover:bg-red-500/40 transition-colors"
+                                      aria-label={`Quitar selección de ${flavor.name}`}
+                                  >
+                                      Eliminar
+                                  </button>
+                              </div>
+                          ) : (
+                            getPortionButtons(flavor)
+                          )}
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-
-                {/* Summary */}
-                <div className="overflow-y-auto p-4 bg-gray-900/50 border-l border-gray-700 flex flex-col">
-                  <h3 className="text-lg font-extralight text-brand-text mb-4">Sabores elegidos:</h3>
-                  {selectedFlavors.length === 0 ? (
-                    <p className="text-brand-text-light text-center flex-grow flex items-center justify-center">Aún no has elegido sabores.</p>
-                  ) : (
-                    <ul className="space-y-2 text-brand-text-light flex-grow">
-                      {selectedFlavors.map((flavor, index) => (
-                        <li key={`${flavor.item.id}-${index}`} className="flex justify-between items-center animate-fade-in bg-gray-800 p-2 rounded">
-                          <span className="truncate pr-2">{flavor.item.name} ({flavor.portions} porc.)</span>
-                          <button 
-                              onClick={() => handleRemoveFlavor(index)} 
-                              className="text-red-500 hover:text-red-400 p-1 rounded-full bg-gray-700 hover:bg-gray-600 flex-shrink-0"
-                              aria-label={`Quitar ${flavor.item.name}`}
-                          >
-                             <TrashIcon />
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                  );
+                })}
               </div>
 
               {/* Footer */}
