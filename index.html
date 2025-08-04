@@ -142,6 +142,37 @@
       };
 
       const menuItems = [
+        // MastroPizzas
+        {
+          id: 901,
+          name: 'Mastropizza de 12 porciones, 4 sabores',
+          category: Category.Pizzas,
+          description: '¡Pizza gigante para compartir! Elige hasta 4 sabores distintos. El precio final corresponde al sabor de mayor valor.',
+          price: 130, // Represents 'Desde' price. Logic will calculate final price.
+          imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
+          isMastro: true,
+          portions: 12,
+        },
+        {
+          id: 902,
+          name: 'Mastropizza de 6 porciones, 2 sabores',
+          category: Category.Pizzas,
+          description: '¡Mitad y mitad! Elige hasta 2 sabores. El precio final corresponde al sabor de mayor valor.',
+          price: 130,
+          imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
+          isMastro: true,
+          portions: 6,
+        },
+        {
+          id: 903,
+          name: 'Pizza de 3 porciones',
+          category: Category.Pizzas,
+          description: 'Tu pizza preferida en tamaño personal. Elige 1 sabor.',
+          price: 130,
+          imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
+          isMastro: true,
+          portions: 3,
+        },
         // Pizzas
         { id: 1, name: 'Pizza Mozzarella', category: Category.Pizzas, description: 'La clásica pizza con abundante mozzarella y salsa de tomate casera.', price: 100, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Aceitunas verdes', 'Orégano'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
         { id: 2, name: 'Pizza Napolitana', category: Category.Pizzas, description: 'Mozzarella, rodajas de tomate fresco y un toque de ajo y albahaca.', price: 120, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Tomate fresco', 'Ajo', 'Albahaca', 'Aceitunas'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
@@ -244,138 +275,159 @@
         );
       }
       
-      function MenuItemCard({ item, onSelect, onAdd, onAddFlavor, isMastroPizzaMode = false, mastroPizzaState }) {
-          const isPizza = item.category === Category.Pizzas;
-
-          const remainingPortions = isMastroPizzaMode 
-              ? mastroPizzaState.portions - mastroPizzaState.selectedFlavors.reduce((sum, f) => sum + f.portions, 0)
-              : 0;
-
-          const renderMastroPizzaButtons = () => {
-              if (!mastroPizzaState || !mastroPizzaState.portions) return null;
-
-              let buttons = [];
-              if (mastroPizzaState.portions === 12) {
-                  buttons = [
-                      { portions: 3, label: '¼ Pizza' },
-                      { portions: 6, label: '½ Pizza' },
-                      { portions: 9, label: '¾ Pizza' },
-                  ];
-              } else if (mastroPizzaState.portions === 6) {
-                  buttons = [
-                      { portions: 3, label: '½ Pizza' },
-                  ];
-              } else if (mastroPizzaState.portions === 3) {
-                  buttons = [
-                      { portions: 3, label: 'Entera' },
-                  ];
-              }
-
-              return (
-                  <div className="flex flex-1 justify-end gap-2">
-                      {buttons.map(btn => (
-                          <button
-                              key={btn.portions}
-                              onClick={() => onAddFlavor(item, btn.portions)}
-                              disabled={!isPizza || btn.portions > remainingPortions}
-                              className="bg-brand-teal text-white px-3 py-2 text-sm rounded-md font-semibold hover:bg-teal-600 transition-all transform hover:scale-105 disabled:bg-gray-600/70 disabled:cursor-not-allowed disabled:scale-100 whitespace-nowrap"
-                          >
-                              + {btn.label}
-                          </button>
-                      ))}
-                  </div>
-              );
-          };
-
+      function MenuItemCard({ item, onSelect, onAdd }) {
           return (
-            <div className={`bg-brand-card rounded-md border border-gray-700 overflow-hidden flex flex-col animate-fade-in-up transition-all ${isMastroPizzaMode && isPizza ? 'hover:border-brand-teal/50' : 'hover:border-brand-accent/50'}`}>
+            <div className={`bg-brand-card rounded-md border border-gray-700 overflow-hidden flex flex-col animate-fade-in-up transition-all hover:border-brand-accent/50`}>
               <img src={item.imageUrls[0]} alt={item.name} className="w-full h-40 object-cover cursor-pointer" onClick={() => onSelect(item)} />
               <div className="p-4 flex flex-col flex-grow">
                 <h3 className="text-lg font-extralight text-brand-text flex-grow">{item.name}</h3>
                 <p className="text-brand-text-light text-sm mb-2 font-light">{item.description}</p>
                 <div className="flex justify-between items-center mt-auto pt-2">
-                  <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
-                  {isMastroPizzaMode && isPizza ? renderMastroPizzaButtons() : (
-                      <button onClick={() => onAdd(item)} className="bg-brand-accent text-white px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
-                        Agregar
-                      </button>
-                  )}
+                  <span className="text-xl font-bold text-brand-accent">{item.isMastro ? 'Desde ' : ''}{formatPrice(item.price)}</span>
+                  <button onClick={() => onAdd(item)} className="bg-brand-accent text-white px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
+                    {item.isMastro ? 'Armar' : 'Agregar'}
+                  </button>
                 </div>
               </div>
             </div>
           );
       }
 
-      function MastroPizzaBuilder({ state, onSelectPortions, onAddMastroPizzaToCart, onCancel, onRemoveFlavor }) {
-          if (state.step === null) {
-              return (
-                  <div className="bg-brand-card p-6 rounded-md border border-gray-700 my-6 animate-fade-in-up">
-                      <h2 className="text-2xl font-normal text-white font-display mb-2" style={{ fontWeight: 400 }}>Pide tu MastroPizza</h2>
-                      <p className="text-brand-text-light mb-4 font-light">1- Elige las porciones para empezar a combinar sabores.</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <button onClick={() => onSelectPortions(12)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">12 Porciones</button>
-                          <button onClick={() => onSelectPortions(6)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">6 Porciones</button>
-                          <button onClick={() => onSelectPortions(3)} className="bg-gray-700 text-brand-text p-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">3 Porciones</button>
+      function MastroBuilderModal({ baseItem, onClose, onConfirm }) {
+        if (!baseItem) return null;
+        
+        const [selectedFlavors, setSelectedFlavors] = useState([]); // Array of {item, portions}
+        
+        const pizzaFlavors = useMemo(() => menuItems.filter(item => item.category === Category.Pizzas && !item.isMastro), []);
+
+        const totalPortions = baseItem.portions;
+        const filledPortions = selectedFlavors.reduce((sum, f) => sum + f.portions, 0);
+        const remainingPortions = totalPortions - filledPortions;
+        const isReadyToAdd = filledPortions === totalPortions;
+        
+        const price = selectedFlavors.length > 0
+          ? Math.max(...selectedFlavors.map(f => f.item.price))
+          : baseItem.price;
+
+        const handleAddFlavor = (item, portions) => {
+          if (portions > remainingPortions) return;
+          setSelectedFlavors(prev => [...prev, { item, portions }]);
+        };
+        
+        const handleRemoveFlavor = (index) => {
+          setSelectedFlavors(prev => prev.filter((_, i) => i !== index));
+        };
+
+        const handleConfirm = () => {
+          onConfirm({
+            baseItem: baseItem,
+            selectedFlavors: selectedFlavors,
+            price: price,
+          });
+        };
+
+        const getPortionButtons = (item) => {
+            let buttons = [];
+            if (totalPortions === 12) {
+                buttons = [
+                    { portions: 3, label: '¼' },
+                    { portions: 6, label: '½' },
+                    { portions: 9, label: '¾' },
+                ];
+            } else if (totalPortions === 6) {
+                buttons = [ { portions: 3, label: '½' } ];
+            } else if (totalPortions === 3) {
+                buttons = [ { portions: 3, label: 'Entera' } ];
+            }
+            return buttons.map(btn => (
+              <button
+                key={btn.portions}
+                onClick={() => handleAddFlavor(item, btn.portions)}
+                disabled={btn.portions > remainingPortions}
+                className="bg-brand-teal text-white px-3 py-1 text-xs rounded-md font-semibold hover:bg-teal-600 transition-all disabled:bg-gray-600/70 disabled:cursor-not-allowed whitespace-nowrap"
+              >
+                + {btn.label}
+              </button>
+            ));
+        };
+
+        return (
+          <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center animate-fade-in p-4" onClick={onClose}>
+            <div className="bg-brand-card rounded-md shadow-xl w-full max-w-4xl h-[90vh] flex flex-col animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
+              {/* Header */}
+              <div className="p-4 border-b border-gray-700 flex-shrink-0">
+                <h2 className="text-2xl font-extralight text-brand-accent font-display">{baseItem.name}</h2>
+                <p className="text-brand-text-light font-light">
+                  Elige los sabores para completar tu pizza. ({filledPortions} de {totalPortions} porciones seleccionadas)
+                </p>
+              </div>
+
+              {/* Main Content */}
+              <div className="flex-grow overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                {/* Flavor List */}
+                <div className="overflow-y-auto p-4 space-y-3 no-scrollbar">
+                  {pizzaFlavors.map(flavor => (
+                    <div key={flavor.id} className="bg-gray-800 p-3 rounded-md flex justify-between items-center border border-gray-700">
+                      <div>
+                        <h4 className="font-semibold text-brand-text">{flavor.name}</h4>
+                        <p className="text-sm text-brand-text-light font-light">{formatPrice(flavor.price)}</p>
                       </div>
+                      <div className="flex gap-2">
+                        {getPortionButtons(flavor)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Summary */}
+                <div className="overflow-y-auto p-4 bg-gray-900/50 border-l border-gray-700 flex flex-col">
+                  <h3 className="text-lg font-extralight text-brand-text mb-4">Sabores elegidos:</h3>
+                  {selectedFlavors.length === 0 ? (
+                    <p className="text-brand-text-light text-center flex-grow flex items-center justify-center">Aún no has elegido sabores.</p>
+                  ) : (
+                    <ul className="space-y-2 text-brand-text-light flex-grow">
+                      {selectedFlavors.map((flavor, index) => (
+                        <li key={`${flavor.item.id}-${index}`} className="flex justify-between items-center animate-fade-in bg-gray-800 p-2 rounded">
+                          <span className="truncate pr-2">{flavor.item.name} ({flavor.portions} porc.)</span>
+                          <button 
+                              onClick={() => handleRemoveFlavor(index)} 
+                              className="text-red-500 hover:text-red-400 p-1 rounded-full bg-gray-700 hover:bg-gray-600 flex-shrink-0"
+                              aria-label={`Quitar ${flavor.item.name}`}
+                          >
+                             <TrashIcon />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="p-4 border-t border-gray-700 flex-shrink-0 bg-brand-header rounded-b-md">
+                  <div className="flex justify-between items-center mb-4">
+                    <div>
+                      <span className="text-lg font-semibold text-brand-text">Precio Final:</span>
+                      <p className="text-xs text-brand-text-light">Basado en el sabor de mayor valor.</p>
+                    </div>
+                    <span className="text-2xl font-bold text-brand-accent">{formatPrice(price)}</span>
                   </div>
-              );
-          }
-          
-          const filledPortions = state.selectedFlavors.reduce((sum, f) => sum + f.portions, 0);
-          const price = state.selectedFlavors.length > 0
-              ? Math.max(...state.selectedFlavors.map(f => f.item.price))
-              : 0;
-          
-          const isReadyToAdd = filledPortions === state.portions && state.portions > 0;
-
-          return (
-              <div className="bg-brand-card p-6 rounded-md border-2 border-brand-accent my-6 sticky top-[7.5rem] lg:top-[calc(4.5rem+4.5rem)] z-10 animate-fade-in shadow-lg shadow-orange-500/10">
-                  <h2 className="text-2xl font-extralight text-brand-accent font-display mb-2">Armando tu MastroPizza</h2>
-                  <p className="text-brand-text-light mb-4 font-light">
-                      {`2- Elige los gustos (${filledPortions} de ${state.portions} porciones seleccionadas)`}
-                  </p>
-                  
-                  {state.selectedFlavors.length > 0 && (
-                      <div className="mb-4 space-y-2 bg-gray-900/50 p-3 rounded-md">
-                          <p className="font-semibold text-brand-text">Sabores elegidos:</p>
-                          <ul className="space-y-2 text-brand-text-light text-sm">
-                              {state.selectedFlavors.map((flavor, index) => (
-                                <li key={`${flavor.item.id}-${index}`} className="flex justify-between items-center animate-fade-in">
-                                  <span className="truncate pr-2">- {flavor.item.name} ({flavor.portions} porc.)</span>
-                                  <button 
-                                      onClick={() => onRemoveFlavor(index)} 
-                                      className="text-red-500 hover:text-red-400 p-1 rounded-full bg-gray-700 hover:bg-gray-600 flex-shrink-0"
-                                      aria-label={`Quitar ${flavor.item.name}`}
-                                  >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
-                                  </button>
-                                </li>
-                              ))}
-                          </ul>
-                      </div>
-                  )}
-                  
-                  {state.selectedFlavors.length > 0 && (
-                       <div className="flex justify-between items-center mb-4">
-                        <span className="text-lg font-semibold text-brand-text">Precio Final:</span>
-                        <span className="text-2xl font-bold text-brand-accent">{formatPrice(price)}</span>
-                      </div>
-                  )}
-
                   <div className="grid grid-cols-2 gap-4">
-                       <button onClick={onCancel} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
-                       <button 
-                          onClick={() => onAddMastroPizzaToCart(price)} 
-                          disabled={!isReadyToAdd} 
-                          className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
-                          Agregar al Carrito
-                      </button>
+                    <button onClick={onClose} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
+                    <button 
+                      onClick={handleConfirm} 
+                      disabled={!isReadyToAdd} 
+                      className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                      Agregar al Carrito
+                    </button>
                   </div>
-                  {!isReadyToAdd && state.portions > 0 && (
-                      <p className="text-xs text-brand-text-light mt-2 text-center">Debes completar las {state.portions} porciones para agregar al carrito.</p>
+                  {!isReadyToAdd && (
+                      <p className="text-xs text-brand-text-light mt-2 text-center">Debes completar las {totalPortions} porciones para agregar al carrito.</p>
                   )}
               </div>
-          );
+            </div>
+          </div>
+        );
       }
 
       function AddToCartModal({ item, onClose, onConfirm }) {
@@ -481,7 +533,7 @@
         );
       }
 
-      function MenuPage({ onSelectItem, onAdd, selectedCategory, onAddFlavor, isMastroPizzaMode, mastroPizzaState }) {
+      function MenuPage({ onSelectItem, onAdd, selectedCategory }) {
         const renderAllItems = () => {
             const categoryOrder = [Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
             
@@ -496,7 +548,7 @@
                                 <h2 id={`category-title-${category}`} className="font-display text-2xl font-extralight text-brand-accent pb-2 mb-6 border-b-2 border-brand-accent/30">{category}</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {itemsInCategory.map(item => (
-                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddFlavor={onAddFlavor} isMastroPizzaMode={isMastroPizzaMode} mastroPizzaState={mastroPizzaState} />
+                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
                                     ))}
                                 </div>
                             </section>
@@ -511,7 +563,7 @@
             return (
                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredItems.map(item => (
-                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddFlavor={onAddFlavor} isMastroPizzaMode={isMastroPizzaMode} mastroPizzaState={mastroPizzaState} />
+                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
                     ))}
                 </div>
             );
@@ -795,12 +847,10 @@
         const [selectedItem, setSelectedItem] = useState(null);
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
         const [selectedCategory, setSelectedCategory] = useState(Category.Todos);
-        const [mastroPizzaState, setMastroPizzaState] = useState({
-          step: null, // null, 'flavors'
-          portions: null,
-          selectedFlavors: [], // Now an array of {item, portions}
+        const [mastroBuilderState, setMastroBuilderState] = useState({
+          isOpen: false,
+          baseItem: null,
         });
-        const mastroPizzaRef = useRef(null);
 
         useEffect(() => {
           try {
@@ -861,57 +911,27 @@
           setCustomItems({});
         }, []);
 
-        const handleSelectPortions = (portions) => {
-            setMastroPizzaState({
-                step: 'flavors',
-                portions: portions,
-                selectedFlavors: [],
-            });
-            setSelectedCategory(Category.Pizzas);
-        };
-
-        const handleAddPortionsToMastroPizza = (item, portionsToAdd) => {
-            setMastroPizzaState(prevState => {
-                const currentPortions = prevState.selectedFlavors.reduce((sum, f) => sum + f.portions, 0);
-                if (currentPortions + portionsToAdd > prevState.portions) {
-                    alert(`No puedes agregar más de ${prevState.portions} porciones.`);
-                    return prevState;
-                }
-
-                const newFlavors = [...prevState.selectedFlavors, { item: item, portions: portionsToAdd }];
-                mastroPizzaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                return {
-                    ...prevState,
-                    selectedFlavors: newFlavors,
-                };
+        const openMastroBuilder = (mastroItem) => {
+            setMastroBuilderState({
+                isOpen: true,
+                baseItem: mastroItem,
             });
         };
         
-        const handleRemoveFlavorFromMastroPizza = (indexToRemove) => {
-            setMastroPizzaState(prevState => {
-                const newFlavors = prevState.selectedFlavors.filter((_, index) => index !== indexToRemove);
-                return {
-                    ...prevState,
-                    selectedFlavors: newFlavors,
-                };
-            });
+        const closeMastroBuilder = () => {
+            setMastroBuilderState({ isOpen: false, baseItem: null });
+        };
+        
+        const handleAddItemClick = (item) => {
+          if (item.isMastro) {
+            openMastroBuilder(item);
+          } else {
+            setItemToQuickAdd(item);
+          }
         };
 
-        const handleCancelMastroPizza = () => {
-            setMastroPizzaState({
-                step: null, portions: null, selectedFlavors: [],
-            });
-        };
-
-        const handleAddMastroPizzaToCart = (price) => {
-            const { portions, selectedFlavors } = mastroPizzaState;
-            const totalSelectedPortions = selectedFlavors.reduce((sum, f) => sum + f.portions, 0);
-            
-            if (totalSelectedPortions !== portions) {
-                alert('Debes completar todas las porciones de la pizza antes de agregarla al carrito.');
-                return;
-            }
+        const handleConfirmMastroPizza = (pizzaData) => {
+            const { baseItem, selectedFlavors, price } = pizzaData;
 
             const customId = `mastro-${Date.now()}`;
             const description = selectedFlavors
@@ -920,18 +940,18 @@
 
             const mastroPizzaItem = {
                 id: customId,
-                name: `MastroPizza ${portions} Porciones`,
+                name: baseItem.name,
                 description: description, // Used for display in the cart on the page
                 price: price,
                 category: Category.Pizzas,
                 // New properties for detailed WhatsApp message
-                totalPortions: portions,
+                totalPortions: baseItem.portions,
                 flavors: selectedFlavors.map(f => ({ name: f.item.name, portions: f.portions })),
             };
             
             setCustomItems(prev => ({...prev, [mastroPizzaItem.id]: mastroPizzaItem }));
             addToCart(mastroPizzaItem.id, 1);
-            handleCancelMastroPizza();
+            closeMastroBuilder();
         };
 
 
@@ -947,29 +967,14 @@
                 <div className={`${view === 'checkout' ? 'hidden' : 'block'} lg:block`}>
                    {view !== 'about' && <CategoryNav selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />}
                    
-                   {view === 'menu' && (selectedCategory === Category.Todos || selectedCategory === Category.Pizzas) && (
-                     <div ref={mastroPizzaRef} className="px-4 md:px-0">
-                         <MastroPizzaBuilder 
-                             state={mastroPizzaState}
-                             onSelectPortions={handleSelectPortions}
-                             onAddMastroPizzaToCart={handleAddMastroPizzaToCart}
-                             onCancel={handleCancelMastroPizza}
-                             onRemoveFlavor={handleRemoveFlavorFromMastroPizza}
-                         />
-                     </div>
-                   )}
-
                    <main className="pb-24 lg:pb-12">
                      {view === 'about' ? (
                        <AboutPage onBack={() => handleSetView('menu')} />
                      ) : (
                        <MenuPage 
                          onSelectItem={setSelectedItem} 
-                         onAdd={setItemToQuickAdd}
+                         onAdd={handleAddItemClick}
                          selectedCategory={selectedCategory}
-                         onAddFlavor={handleAddPortionsToMastroPizza}
-                         isMastroPizzaMode={mastroPizzaState.step === 'flavors'}
-                         mastroPizzaState={mastroPizzaState}
                        />
                      )}
                    </main>
@@ -1008,6 +1013,11 @@
             {/* Modals are global */}
             <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} onAddToCart={addToCart} />
             <AddToCartModal item={itemToQuickAdd} onClose={() => setItemToQuickAdd(null)} onConfirm={addToCart} />
+            <MastroBuilderModal 
+              baseItem={mastroBuilderState.baseItem} 
+              onClose={closeMastroBuilder} 
+              onConfirm={handleConfirmMastroPizza} 
+            />
             
             {/* Mobile-only Bottom Nav */}
             <BottomNav view={view} setView={handleSetView} cartCount={cartCount} />
