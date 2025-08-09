@@ -4,7 +4,7 @@
     <meta charset="utf-t-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F97316">
-    <title>La Escapadita - Pergamino</title>
+    <title>MastroPizza - Pergamino</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -147,8 +147,8 @@
           id: 901,
           name: 'Mastropizza de 12 porciones, hasta 4 sabores',
           category: Category.Pizzas,
-          description: '¡Pizza gigante para compartir! Elige hasta 4 sabores distintos. El precio final corresponde al sabor de mayor valor.',
-          price: 130, // Represents 'Desde' price. Logic will calculate final price.
+          description: '¡Pizza gigante para compartir! Elige hasta 4 sabores distintos.',
+          price: 14000,
           imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
           isMastro: true,
           portions: 12,
@@ -157,8 +157,8 @@
           id: 902,
           name: 'Mastropizza de 6 porciones, hasta 2 sabores',
           category: Category.Pizzas,
-          description: '¡Mitad y mitad! Elige hasta 2 sabores. El precio final corresponde al sabor de mayor valor.',
-          price: 130,
+          description: '¡Mitad y mitad! Elige hasta 2 sabores.',
+          price: 7500,
           imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
           isMastro: true,
           portions: 6,
@@ -167,17 +167,61 @@
           id: 903,
           name: 'Pizza de 3 porciones',
           category: Category.Pizzas,
-          description: 'Tu pizza preferida en tamaño personal. Elige 1 sabor.',
-          price: 130,
+          description: 'Elige 1 sabor para tu pizza personal.',
+          price: 5000,
           imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
           isMastro: true,
           portions: 3,
         },
         // Pizzas
-        { id: 1, name: 'Pizza Mozzarella', category: Category.Pizzas, description: 'La clásica pizza con abundante mozzarella y salsa de tomate casera.', price: 100, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Aceitunas verdes', 'Orégano'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
-        { id: 2, name: 'Pizza Napolitana', category: Category.Pizzas, description: 'Mozzarella, rodajas de tomate fresco y un toque de ajo y albahaca.', price: 120, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Tomate fresco', 'Ajo', 'Albahaca', 'Aceitunas'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
-        { id: 3, name: 'Pizza Fugazzeta', category: Category.Pizzas, description: 'Una delicia para los amantes de la cebolla, con mozzarella y un toque de aceite de oliva.', price: 110, ingredients: ['Masa de pizza', 'Queso mozzarella', 'Cebolla blanca', 'Aceite de oliva', 'Orégano'], prepTime: '25-30 min', imageUrls: ['https://tofuu.getjusto.com/orioneat-local/resized2/8BmmxWrSsXHMr9Kpk-300-x.webp']},
-        { id: 4, name: 'Pizza Calabresa', category: Category.Pizzas, description: 'Sabor intenso con longaniza calabresa, mozzarella y ají molido.', price: 130, ingredients: ['Masa de pizza', 'Salsa de tomate', 'Queso mozzarella', 'Longaniza calabresa', 'Ají molido', 'Aceitunas negras'], prepTime: '25-30 min', imageUrls: ['https://speedy.uenicdn.com/4c6d58bf-c626-4ade-85a5-5390e842a41a/c440_a/image/upload/v1612909110/business/f919def1-92cc-4aaa-906d-07447acb469b.jpg']},
+        { id: 101, name: 'Pizza de Acelga y Roquefort', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, acelga, roquefort, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'acelga', 'roquefort', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 102, name: 'Pizza de Ananá', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, ananá, azúcar negra.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'ananá', 'azúcar negra'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 103, name: 'Pizza de Ananá con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, ananá, azúcar negra.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'ananá', 'azúcar negra'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 104, name: 'Pizza Afrodisiaca', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, anchoas, orégano, aceitunas.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'anchoas', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 105, name: 'Pizza de Atún', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, atún, morrón, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'atún', 'morrón', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 106, name: 'Pizza Bolognesa', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, longaniza, orégano y aceitunas.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'longaniza', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://speedy.uenicdn.com/4c6d58bf-c626-4ade-85a5-5390e842a41a/c440_a/image/upload/v1612909110/business/f919def1-92cc-4aaa-906d-07447acb469b.jpg']},
+        { id: 107, name: 'Pizza Calabresa con Morrón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, longaniza, morrón, orégano, aceitunas.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'longaniza', 'morrón', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://speedy.uenicdn.com/4c6d58bf-c626-4ade-85a5-5390e842a41a/c440_a/image/upload/v1612909110/business/f919def1-92cc-4aaa-906d-07447acb469b.jpg']},
+        { id: 108, name: 'Pizza de Cantimpalo con Morrón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, cantimpalo, morrón, orégano, aceitunas.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'cantimpalo', 'morrón', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 109, name: 'Pizza de Choclo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, choclo, orégano, aceitunas.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'choclo', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 110, name: 'Pizza de Choclo con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, choclo, orégano, aceitunas.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'choclo', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 111, name: 'Pizza de Champiñones', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, champiñones, orégano, aceitunas.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'champiñones', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 112, name: 'Pizza Criolla', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, criolla, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'criolla', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 113, name: 'Pizza Cuatro Quesos', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, queso tibo, parmesano, roquefort, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'queso tibo', 'parmesano', 'roquefort', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 114, name: 'Pizza Especial', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, huevo, morrón, orégano, aceituna.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'huevo', 'morrón', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 115, name: 'Pizza Fugazza', category: Category.Pizzas, description: 'Cebolla, mozzarella, orégano y aceitunas.', price: 14000, halfPrice: 7500, ingredients: ['Cebolla', 'mozzarella', 'orégano', 'aceitunas'], prepTime: '20-25 min', imageUrls: ['https://tofuu.getjusto.com/orioneat-local/resized2/8BmmxWrSsXHMr9Kpk-300-x.webp']},
+        { id: 116, name: 'Pizza de Jamón Crudo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón crudo, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón crudo', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 117, name: 'Pizza de Jamón Crudo y Rúcula', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón crudo, rúcula, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón crudo', 'rúcula', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 118, name: 'Pizza Mozzarella', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, orégano, aceituna.', price: 14000, halfPrice: 7500, ingredients: ['Salsa de tomate', 'mozzarella', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 119, name: 'Pizza Mozzarella con Huevo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, huevo duro, orégano, aceituna.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'huevo duro', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 120, name: 'Pizza Mozzarella con Morrón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, morrón, orégano, aceituna.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'morrón', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 121, name: 'Pizza Mozzarella con Verdeo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, cebolla de verdeo, orégano, aceituna.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'cebolla de verdeo', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 122, name: 'Pizza Mozzarella con Papitas', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, papitas pay.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'papitas pay'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 123, name: 'Pizza Mozzarella con Cheddar', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, queso cheddar, orégano, aceituna.', price: 17500, halfPrice: 9500, ingredients: ['Salsa de tomate', 'mozzarella', 'queso cheddar', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 124, name: 'Pizza Napolitana', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, tomate, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'tomate', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
+        { id: 125, name: 'Pizza Napolitana con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, tomate, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'tomate', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
+        { id: 126, name: 'Pizza Napolitana Especial', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, huevo, morrón, tomate, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'huevo', 'morrón', 'tomate', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://media.elgourmet.com/article/8metlvp345_portada-pizza.jpg']},
+        { id: 127, name: 'Pizza Ojo de Buey', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, panceta, huevo frito, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'panceta', 'huevo frito', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 128, name: 'Pizza de Palmito', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, palmito, salsa golf, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'palmito', 'salsa golf', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 129, name: 'Pizza de Palmito con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, palmito, salsa golf, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'palmito', 'salsa golf', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 130, name: 'Pizza de Panceta', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, panceta, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'panceta', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 131, name: 'Pizza de Panceta con Cheddar', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, cheddar, panceta, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'cheddar', 'panceta', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 132, name: 'Pizza de Panceta con Verdeo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, panceta, cebolla de verdeo, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'panceta', 'cebolla de verdeo', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 133, name: 'Pizza de Panceta con Verdeo y Cheddar', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, panceta, cebolla de verdeo, cheddar, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'panceta', 'cebolla de verdeo', 'cheddar', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 134, name: 'Pizza Picante', category: Category.Pizzas, description: 'Salsa picante, mozzarella, ají molido, orégano y aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa picante', 'mozzarella', 'ají molido', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 135, name: 'Pizza de Pollo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, pollo, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'pollo', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 136, name: 'Pizza de Pollo con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, pollo, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'pollo', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 137, name: 'Pizza de Pollo con Salsa Roja', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, pollo con salsa roja, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'pollo con salsa roja', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 138, name: 'Pizza de Pollo con Verdeo', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, pollo con salsa blanca, cebolla de verdeo, morrón, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'pollo con salsa blanca', 'cebolla de verdeo', 'morrón', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 139, name: 'Pizza de Pollo con Champiñones', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, pollo, champiñón, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'pollo', 'champiñón', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 140, name: 'Pizza de Provolone', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, provolone, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'provolone', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 141, name: 'Pizza de Provolone con Jamón', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón, provolone, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón', 'provolone', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 142, name: 'Pizza Primavera', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, jamón cocido, cebolla de verdeo, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'jamón cocido', 'cebolla de verdeo', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 143, name: 'Pizza de Roquefort', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, roquefort, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'roquefort', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 144, name: 'Pizza con Salchicha', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, salchichas, papas pay.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'salchichas', 'papas pay'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 145, name: 'Pizza de Rúcula y Parmesano', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, rúcula, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'rúcula', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 146, name: 'Pizza de Verdura', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, acelga, salsa blanca, cebolla, morrón, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'acelga', 'salsa blanca', 'cebolla', 'morrón', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 147, name: 'Pizza de Provoleta', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, rúcula, parmesano, provoleta, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'rúcula', 'parmesano', 'provoleta', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
+        { id: 148, name: 'Pizza de Peperoni', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, peperoni, orégano, aceituna.', price: 18000, halfPrice: 10500, ingredients: ['Salsa de tomate', 'mozzarella', 'peperoni', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
         // Hamburguesas
         { id: 5, name: 'Hamburguesa Clásica', category: Category.Hamburguesas, description: 'Carne de primera, lechuga, tomate y nuestra salsa especial en pan brioche.', price: 100, ingredients: ['Carne de res', 'Pan brioche', 'Lechuga', 'Tomate', 'Cebolla', 'Salsa especial'], prepTime: '15-20 min', imageUrls: ['https://jetextramar.com/wp-content/uploads/2021/07/congelados-receta-hamburguesa-de-pollo-1024x768.jpg']},
         { id: 6, name: 'Hamburguesa Doble Cheddar', category: Category.Hamburguesas, description: 'Doble medallón de carne, doble porción de queso cheddar y panceta crujiente.', price: 100, ingredients: ['Doble carne de res', 'Pan brioche', 'Queso cheddar', 'Panceta', 'Pepinillos'], prepTime: '15-20 min', imageUrls: ['https://media-cdn.tripadvisor.com/media/photo-s/1c/c7/15/d1/holy-cheese-doble-hamburguesa.jpg']},
@@ -224,11 +268,11 @@
           <header className="bg-brand-header border-b border-gray-700 sticky top-0 z-20">
             {/* Mobile Header */}
             <div className="max-w-md mx-auto flex items-center justify-center h-[4.5rem] lg:hidden">
-              <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto"/>
+              <img src={logoUrl} alt="MastroPizza Logo" className="h-14 w-auto"/>
             </div>
             {/* Desktop Header */}
             <div className="hidden lg:flex max-w-7xl mx-auto items-center justify-between h-[4.5rem] px-8">
-              <img src={logoUrl} alt="La Escapadita Logo" className="h-14 w-auto cursor-pointer" onClick={() => setView('menu')} />
+              <img src={logoUrl} alt="MastroPizza Logo" className="h-14 w-auto cursor-pointer" onClick={() => setView('menu')} />
               <nav className="flex items-center space-x-6">
                   <button onClick={() => setView('menu')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Menú</button>
                   <button onClick={() => setView('about')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Nosotros</button>
@@ -275,22 +319,57 @@
         );
       }
       
-      function MenuItemCard({ item, onSelect, onAdd }) {
-          return (
+      function MenuItemCard({ item, onSelect, onAdd, onAddHalf }) {
+        const isStandardPizza = item.category === Category.Pizzas && !item.isMastro && item.halfPrice;
+
+        return (
             <div className={`bg-brand-card rounded-md border border-gray-700 overflow-hidden flex flex-col animate-fade-in-up transition-all hover:border-brand-accent/50`}>
               <img src={item.imageUrls[0]} alt={item.name} className="w-full h-40 object-cover cursor-pointer" onClick={() => onSelect(item)} />
               <div className="p-4 flex flex-col flex-grow">
                 <h3 className="text-lg font-extralight text-brand-text flex-grow">{item.name}</h3>
-                <p className="text-brand-text-light text-sm mb-2 font-light">{item.description}</p>
-                <div className="flex justify-between items-center mt-auto pt-2">
-                  <span className="text-xl font-bold text-brand-accent">{item.isMastro ? 'Desde ' : ''}{formatPrice(item.price)}</span>
-                  <button onClick={() => onAdd(item)} className="bg-brand-accent text-white px-4 py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105">
-                    {item.isMastro ? 'Armar' : 'Agregar'}
-                  </button>
+                <p className="text-brand-text-light text-sm mb-4 font-light">{item.description}</p>
+                
+                <div className="mt-auto pt-2">
+                    {isStandardPizza ? (
+                        <div className="grid grid-cols-2 gap-4">
+                            {/* Left Column: Entera */}
+                            <div className="flex flex-col items-center space-y-2">
+                                <p className="font-semibold text-brand-text">Pizza Entera:</p>
+                                <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
+                                <button 
+                                    onClick={() => onAdd(item)} 
+                                    className="bg-brand-accent text-white w-full py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 text-sm"
+                                >
+                                  Agregar
+                                </button>
+                            </div>
+                            {/* Right Column: Media */}
+                            <div className="flex flex-col items-center space-y-2">
+                                <p className="font-semibold text-brand-text">Media Pizza</p>
+                                <span className="text-xl font-bold text-brand-accent">{formatPrice(item.halfPrice)}</span>
+                                <button 
+                                    onClick={() => onAddHalf(item)} 
+                                    className="bg-brand-accent text-white w-full py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 text-sm"
+                                >
+                                  Agregar
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="flex justify-between items-center">
+                            { !item.isMastro && <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span> }
+                            <button 
+                                onClick={() => onAdd(item)} 
+                                className={`bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 ${item.isMastro ? 'w-full' : 'px-4'}`}
+                            >
+                                {item.isMastro ? 'Armar Pizza' : 'Agregar'}
+                            </button>
+                        </div>
+                    )}
                 </div>
               </div>
             </div>
-          );
+        );
       }
 
       function PizzaVisualizer({ totalSections, filledSections }) {
@@ -356,10 +435,38 @@
         const filledPortions = Object.values(selectedFlavors).reduce((sum, p) => sum + p, 0);
         const remainingPortions = totalPortions - filledPortions;
         const isReadyToAdd = filledPortions === totalPortions;
+        const hasFlavors = Object.keys(selectedFlavors).length > 0;
         
-        const price = Object.keys(selectedFlavors).length > 0
-          ? Math.max(...Object.keys(selectedFlavors).map(id => itemsById[id].price))
-          : baseItem.price;
+        const price = useMemo(() => {
+            if (!baseItem) return 0;
+
+            // 3-portion pizza has a fixed price.
+            if (baseItem.portions === 3) {
+                 const flavorIds = Object.keys(selectedFlavors);
+                 if (flavorIds.length === 0) return baseItem.price;
+                 return itemsById[flavorIds[0]].price;
+            }
+            
+            const flavorIds = Object.keys(selectedFlavors);
+
+            if (flavorIds.length === 0) {
+                return baseItem.price;
+            }
+
+            // 6-portion pizza uses half prices.
+            if (baseItem.portions === 6) {
+                return Math.max(...flavorIds.map(id => itemsById[id].halfPrice));
+            }
+            
+            // 12-portion pizza uses full prices.
+            if (baseItem.portions === 12) {
+                return Math.max(...flavorIds.map(id => itemsById[id].price));
+            }
+
+            // Fallback to base price
+            return baseItem.price;
+
+        }, [baseItem, selectedFlavors]);
         
         const visualizerSections = useMemo(() => {
             if (totalPortions === 12) return 4;
@@ -506,12 +613,11 @@
 
               {/* Footer */}
               <div className="p-4 border-t border-gray-700 flex-shrink-0 bg-brand-header rounded-b-md">
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center mb-4 min-h-[2.5rem]">
                     <div>
                       <span className="text-lg font-semibold text-brand-text">Precio Final:</span>
-                      <p className="text-xs text-brand-text-light">Basado en el sabor de mayor valor.</p>
                     </div>
-                    <span className="text-2xl font-bold text-brand-accent">{formatPrice(price)}</span>
+                    {hasFlavors && <span className="text-2xl font-bold text-brand-accent animate-fade-in">{formatPrice(price)}</span>}
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <button onClick={onClose} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
@@ -543,7 +649,7 @@
           if (!item) return null;
 
           const handleConfirm = () => {
-            onConfirm(item.id, quantity);
+            onConfirm(item, quantity);
             onClose();
           };
 
@@ -584,6 +690,42 @@
             </div>
           );
       }
+      
+      function HalfPizzaModal({ item, onClose, onConfirm }) {
+          if (!item) return null;
+
+          const handleConfirm = () => {
+              onConfirm(item);
+          };
+
+          return (
+              <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center animate-fade-in p-4" onClick={onClose}>
+                  <div className="bg-brand-card rounded-md shadow-xl w-full max-w-sm p-6 animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
+                      <h2 className="text-xl font-extralight text-brand-text mb-2 text-center">Vas a agregar media pizza</h2>
+                      <p className="text-2xl font-extralight font-display text-brand-accent text-center mb-1">de {item.name.replace('Pizza ', '')}</p>
+                      <p className="text-2xl font-bold text-brand-accent text-center mb-6">{formatPrice(item.halfPrice)}</p>
+
+                      <div className="grid grid-cols-2 gap-4 mt-6">
+                          <button 
+                              onClick={onClose} 
+                              className="w-full bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors"
+                              aria-label="Cancelar y volver al menú"
+                          >
+                            Atrás
+                          </button>
+                          <button 
+                              onClick={handleConfirm} 
+                              className="w-full bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105"
+                              aria-label={`Confirmar y agregar media ${item.name}`}
+                          >
+                            Agregar
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          );
+      }
+
 
       function ItemDetailModal({ item, onClose, onAddToCart }) {
         const [quantity, setQuantity] = useState(1);
@@ -597,7 +739,7 @@
         if (!item) return null;
 
         const handleAddToCart = () => {
-          onAddToCart(item.id, quantity);
+          onAddToCart(item, quantity);
           onClose();
         };
 
@@ -634,7 +776,7 @@
         );
       }
 
-      function MenuPage({ onSelectItem, onAdd, selectedCategory }) {
+      function MenuPage({ onSelectItem, onAdd, selectedCategory, onAddHalf }) {
         const renderAllItems = () => {
             const categoryOrder = [Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
             
@@ -649,7 +791,7 @@
                                 <h2 id={`category-title-${category}`} className="font-display text-2xl font-extralight text-brand-accent pb-2 mb-6 border-b-2 border-brand-accent/30">{category}</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {itemsInCategory.map(item => (
-                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
+                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} />
                                     ))}
                                 </div>
                             </section>
@@ -664,7 +806,7 @@
             return (
                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredItems.map(item => (
-                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} />
+                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} />
                     ))}
                 </div>
             );
@@ -686,7 +828,7 @@
                 <div className="bg-brand-card p-6 rounded-md border border-gray-700">
                     <h2 className="text-3xl font-extralight font-display text-brand-text mb-4">Sobre Nosotros</h2>
                     <p className="text-brand-text-light mb-4 font-light">
-                        Bienvenidos a <strong>La Escapadita</strong>, tu rincón favorito en Pergamino para disfrutar de la mejor comida casera. Desde 2005, nos dedicamos a preparar pizzas, hamburguesas y empanadas con los ingredientes más frescos y todo el amor que nos caracteriza.
+                        Bienvenidos a <strong>MastroPizza</strong>, tu rincón favorito en Pergamino para disfrutar de la mejor comida casera. Desde 2005, nos dedicamos a preparar pizzas, hamburguesas y empanadas con los ingredientes más frescos y todo el amor que nos caracteriza.
                     </p>
                     <p className="text-brand-text-light mb-4 font-light">
                         Nuestro secreto es simple: recetas familiares, productos de calidad y un equipo apasionado por la buena cocina. ¡Gracias por elegirnos!
@@ -734,32 +876,50 @@
             return;
           }
 
-          const orderDetails = cartItems.map(item => {
-            let detail = `- ${item.quantity} x ${item.name} (${formatPrice(item.price)} c/u) - Total: ${formatPrice(item.price * item.quantity)}`;
-            
-            // Special formatting for MastroPizza
-            if (item.id.startsWith('mastro-') && item.flavors && item.totalPortions) {
-                const gcd = (a, b) => b ? gcd(b, a % b) : a;
-                const formatFraction = (numerator, denominator) => {
-                    if (numerator === denominator) return 'Completa';
-                    const commonDivisor = gcd(numerator, denominator);
-                    return `${numerator / commonDivisor}/${denominator / commonDivisor}`;
-                };
+          const orderDetails = cartItems.map((item, index) => {
+              let detail = '';
+              const itemNumber = `*${index + 1}-*`;
 
-                const flavorDetails = item.flavors.map(flavor => {
-                    const fraction = formatFraction(flavor.portions, item.totalPortions);
-                    if (fraction === 'Completa') {
-                        return `de ${flavor.name}`;
-                    }
-                    return `${fraction} de ${flavor.name}`;
-                }).join(' + ');
+              // MastroPizza
+              if (item.id.startsWith('mastro-') && item.flavors && item.totalPortions) {
+                  const name = `Mastropizza (${item.totalPortions} porciones)`;
+                  const total = `Total ${formatPrice(item.price * item.quantity)}`;
+                  detail = `${itemNumber} ${name} – ${total}`;
 
-                detail += `\n  (${flavorDetails})`;
-            } else if (item.description && item.id.startsWith('mastro-')) { // Fallback for old items from localStorage
-                detail += `\n  (${item.description})`;
-            }
+                  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+                  const formatFraction = (numerator, denominator) => {
+                      if (numerator === denominator) return 'Completa';
+                      const commonDivisor = gcd(numerator, denominator);
+                      return `${numerator / commonDivisor}/${denominator / commonDivisor}`;
+                  };
+                  
+                  if (item.flavors.length === 1 && item.flavors[0].portions === item.totalPortions) {
+                      const flavorName = item.flavors[0].name;
+                      detail += `\n(${flavorName})`;
+                  } else {
+                      const flavorDetails = item.flavors.map(flavor => {
+                          const fraction = formatFraction(flavor.portions, item.totalPortions);
+                          return `${fraction} de ${flavor.name}`;
+                      }).join(' + ');
+                      detail += `\n(${flavorDetails})`;
+                  }
 
-            return detail;
+              // Half Pizza
+              } else if (item.isHalf || String(item.id).endsWith('-half')) {
+                  const name = item.name.replace('Media ', '');
+                  const quantity = '1/2';
+                  const total = `Total ${formatPrice(item.price)}`;
+                  detail = `${itemNumber} ${name} – ${quantity} – ${total}`;
+
+              // Standard Item
+              } else {
+                  const name = item.name;
+                  const quantity = `X${item.quantity}`;
+                  const total = `Total ${formatPrice(item.price * item.quantity)}`;
+                  detail = `${itemNumber} ${name} – ${quantity} – ${total}`;
+              }
+
+              return detail;
           }).join('\n');
           
           let message = `*¡Nuevo Pedido desde la App!* 🍔🍕\n\n`;
@@ -818,13 +978,14 @@
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-700 last:border-b-0 gap-2">
                         <div className="flex-grow">
                             <p className="font-semibold">{item.name}</p>
-                            {item.description && item.id.startsWith('mastro-') && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
+                            {(item.id.startsWith('mastro-') || item.isHalf) && item.description && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
                             <div className="flex items-center space-x-4 mt-2">
                                 {/* Quantity controller */}
                                 <div className="flex items-center space-x-2 rounded-md bg-gray-800 p-1">
                                     <button 
                                         onClick={() => updateCart(item.id, item.quantity - 1)} 
-                                        className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors"
+                                        className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={item.isHalf || String(item.id).endsWith('-half') || item.id.startsWith('mastro-')}
                                         aria-label={`Disminuir cantidad de ${item.name}`}
                                     >
                                         <MinusIcon />
@@ -832,7 +993,8 @@
                                     <span className="font-bold w-6 text-center" aria-live="polite">{item.quantity}</span>
                                     <button 
                                         onClick={() => updateCart(item.id, item.quantity + 1)} 
-                                        className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors"
+                                        className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={item.isHalf || String(item.id).endsWith('-half') || item.id.startsWith('mastro-')}
                                         aria-label={`Aumentar cantidad de ${item.name}`}
                                     >
                                         <PlusIcon />
@@ -944,9 +1106,10 @@
       function App() {
         const [view, setView] = useState('menu'); // 'menu', 'about', 'checkout'
         const [cart, setCart] = useState({}); // { itemId: quantity }
-        const [customItems, setCustomItems] = useState({}); // For MastroPizzas
+        const [customItems, setCustomItems] = useState({}); // For MastroPizzas and HalfPizzas
         const [selectedItem, setSelectedItem] = useState(null);
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
+        const [halfPizzaToAdd, setHalfPizzaToAdd] = useState(null);
         const [selectedCategory, setSelectedCategory] = useState(Category.Todos);
         const [mastroBuilderState, setMastroBuilderState] = useState({
           isOpen: false,
@@ -955,8 +1118,8 @@
 
         useEffect(() => {
           try {
-            const savedCart = localStorage.getItem('laEscapaditaCart');
-            const savedCustomItems = localStorage.getItem('laEscapaditaCustomItems');
+            const savedCart = localStorage.getItem('mastroPizzaCart');
+            const savedCustomItems = localStorage.getItem('mastroPizzaCustomItems');
             if (savedCart) setCart(JSON.parse(savedCart));
             if (savedCustomItems) setCustomItems(JSON.parse(savedCustomItems));
           } catch (error) {
@@ -968,8 +1131,8 @@
 
         useEffect(() => {
             try {
-                localStorage.setItem('laEscapaditaCart', JSON.stringify(cart));
-                localStorage.setItem('laEscapaditaCustomItems', JSON.stringify(customItems));
+                localStorage.setItem('mastroPizzaCart', JSON.stringify(cart));
+                localStorage.setItem('mastroPizzaCustomItems', JSON.stringify(customItems));
             } catch (error) {
                 console.error("Failed to save data to localStorage:", error);
             }
@@ -986,7 +1149,7 @@
             if (quantity <= 0) {
               delete newCart[itemId];
               // Also remove from custom items if it exists there
-              if (String(itemId).startsWith('mastro-')) {
+              if (String(itemId).startsWith('mastro-') || String(itemId).endsWith('-half')) {
                   setCustomItems(prevCustom => {
                       const newCustom = {...prevCustom};
                       delete newCustom[itemId];
@@ -1000,11 +1163,16 @@
           });
         }, []);
 
-        const addToCart = useCallback((itemId, quantity) => {
-          setCart(prevCart => ({
-            ...prevCart,
-            [itemId]: (prevCart[itemId] || 0) + quantity,
-          }));
+        const addToCart = useCallback((item, quantity) => {
+            const itemId = item.id;
+            if (item.isHalf || String(item.id).startsWith('mastro-')) {
+                setCustomItems(prev => ({...prev, [itemId]: item}));
+            }
+            
+            setCart(prevCart => ({
+              ...prevCart,
+              [itemId]: (prevCart[itemId] || 0) + quantity,
+            }));
         }, []);
         
         const clearCart = useCallback(() => {
@@ -1031,6 +1199,30 @@
           }
         };
 
+        const handleHalfPizzaClick = (item) => {
+            const halfPizzaId = `${item.id}-half`;
+            if (cart[halfPizzaId]) {
+                alert('Ya tienes media pizza de este sabor en tu carrito. Solo se permite una por sabor.');
+                return;
+            }
+            setHalfPizzaToAdd(item);
+        };
+
+        const handleConfirmAddHalfPizza = (originalItem) => {
+            const halfPizzaItem = {
+                ...originalItem,
+                id: `${originalItem.id}-half`,
+                name: `Media ${originalItem.name}`,
+                price: originalItem.halfPrice,
+                description: `Media pizza de ${originalItem.name.replace('Pizza ', '').toLowerCase()}.`,
+                isHalf: true,
+            };
+            delete halfPizzaItem.halfPrice;
+            
+            addToCart(halfPizzaItem, 1);
+            setHalfPizzaToAdd(null);
+        };
+
         const handleConfirmMastroPizza = (pizzaData) => {
             const { baseItem, selectedFlavors, price } = pizzaData;
 
@@ -1050,8 +1242,7 @@
                 flavors: selectedFlavors.map(f => ({ name: f.item.name, portions: f.portions })),
             };
             
-            setCustomItems(prev => ({...prev, [mastroPizzaItem.id]: mastroPizzaItem }));
-            addToCart(mastroPizzaItem.id, 1);
+            addToCart(mastroPizzaItem, 1);
             closeMastroBuilder();
         };
 
@@ -1075,6 +1266,7 @@
                        <MenuPage 
                          onSelectItem={setSelectedItem} 
                          onAdd={handleAddItemClick}
+                         onAddHalf={handleHalfPizzaClick}
                          selectedCategory={selectedCategory}
                        />
                      )}
@@ -1114,6 +1306,11 @@
             {/* Modals are global */}
             <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} onAddToCart={addToCart} />
             <AddToCartModal item={itemToQuickAdd} onClose={() => setItemToQuickAdd(null)} onConfirm={addToCart} />
+            <HalfPizzaModal 
+              item={halfPizzaToAdd} 
+              onClose={() => setHalfPizzaToAdd(null)} 
+              onConfirm={handleConfirmAddHalfPizza} 
+            />
             <MastroBuilderModal 
               baseItem={mastroBuilderState.baseItem} 
               onClose={closeMastroBuilder} 
