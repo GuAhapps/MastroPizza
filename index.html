@@ -155,6 +155,16 @@
           portions: 12,
         },
         {
+          id: 903,
+          name: 'Mastropizza de 12 porciones, hasta 3 sabores',
+          category: Category.Pizzas,
+          description: '¡Pizza gigante para compartir! Elige hasta 3 sabores de 4 porciones cada uno.',
+          price: 18000,
+          imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
+          isMastro: true,
+          portions: 12,
+        },
+        {
           id: 902,
           name: 'Mastropizza de 6 porciones, hasta 2 sabores',
           category: Category.Pizzas,
@@ -385,54 +395,86 @@
         );
       }
 
-      function PizzaVisualizer({ totalSections, filledSections }) {
-        if (totalSections !== 2 && totalSections !== 4) return null;
-
-        const sections = [];
-        const size = 100; // SVG viewBox size
-        const center = size / 2;
-        const radius = size / 2;
+      function PizzaVisualizer({ baseItem, selectedFlavors = {} }) {
+        const totalPortions = baseItem.portions;
+        const isLargePizza = totalPortions === 12;
+        const totalCells = isLargePizza ? 12 : 6;
+        const gridCols = isLargePizza ? 'grid-cols-6' : 'grid-cols-3';
+        const widthClass = isLargePizza ? 'w-64' : 'w-32';
+        const containerShapeClass = isLargePizza ? 'rounded-full' : 'rounded-l-full';
         
-        // Paths are drawn starting from the top and going clockwise
-        const paths = {
-          4: [
-            `M ${center} ${center} L ${center} 0 A ${radius} ${radius} 0 0 1 ${size} ${center} Z`, // Top-right
-            `M ${center} ${center} L ${size} ${center} A ${radius} ${radius} 0 0 1 ${center} ${size} Z`, // Bottom-right
-            `M ${center} ${center} L ${center} ${size} A ${radius} ${radius} 0 0 1 0 ${center} Z`,   // Bottom-left
-            `M ${center} ${center} L 0 ${center} A ${radius} ${radius} 0 0 1 ${center} 0 Z`      // Top-left
-          ],
-          2: [
-            // Right half
-            `M ${center} 0 A ${radius} ${radius} 0 0 1 ${center} ${size} L ${center} 0 Z`,
-            // Left half
-            `M ${center} 0 A ${radius} ${radius} 0 0 0 ${center} ${size} L ${center} 0 Z`
-          ]
+        const colors = ['bg-orange-500'];
+        
+        const finalCellClasses = Array(totalCells).fill('bg-gray-700/50');
+        
+        const sortedFlavorKeys = Object.keys(selectedFlavors).sort();
+        
+        if (baseItem.id === 903) { // Special logic for 3-flavor pizza
+            const flavorChunks = [[0, 1, 6, 7], [2, 3, 8, 9], [4, 5, 10, 11]];
+            sortedFlavorKeys.forEach((flavorId, chunkIndex) => {
+                const colorClass = colors[chunkIndex % colors.length];
+                const chunkIndices = flavorChunks[chunkIndex];
+                chunkIndices.forEach(cellIndex => {
+                    if (cellIndex < totalCells) {
+                        finalCellClasses[cellIndex] = colorClass;
+                    }
+                });
+            });
+        } else { // Default sequential filling logic
+            let currentCellIndex = 0;
+            sortedFlavorKeys.forEach((flavorId, colorIndex) => {
+              const portions = selectedFlavors[flavorId];
+              const colorClass = colors[colorIndex % colors.length];
+              for (let i = 0; i < portions; i++) {
+                if (currentCellIndex < totalCells) {
+                  finalCellClasses[currentCellIndex] = colorClass;
+                  currentCellIndex++;
+                }
+              }
+            });
+        }
+
+        const filledPortions = sortedFlavorKeys.reduce((sum, key) => sum + selectedFlavors[key], 0);
+        
+        let description = '';
+        if (baseItem.id === 901) { // 4 flavors
+            description = `${filledPortions / 3} de 4 sabores seleccionados`;
+        } else if (baseItem.id === 903) { // 3 flavors
+            description = `${filledPortions / 4} de 3 sabores seleccionados`;
+        } else if (baseItem.id === 902) { // 2 flavors
+            description = `${filledPortions / 3} de 2 sabores seleccionados`;
+        } else {
+            description = `${filledPortions} de ${totalPortions} porciones`;
+        }
+
+        const getCornerClasses = (index) => {
+          if (isLargePizza) { // 6x2 grid for 12 portions
+            if (index === 0) return 'rounded-tl-full';
+            if (index === 5) return 'rounded-tr-full';
+            if (index === 6) return 'rounded-bl-full';
+            if (index === 11) return 'rounded-br-full';
+          } else { // 3x2 grid for 6 portions
+            if (index === 0) return 'rounded-tl-full';
+            if (index === 3) return 'rounded-bl-full';
+          }
+          return '';
         };
 
-        const currentPaths = paths[totalSections];
-
-        for (let i = 0; i < totalSections; i++) {
-          sections.push(
-            <path
-              key={i}
-              d={currentPaths[i]}
-              className={`${i < filledSections ? 'fill-brand-teal' : 'fill-gray-700'} transition-colors duration-300`}
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-          );
-        }
-        
         return (
           <div className="flex flex-col items-center">
-              <div className="relative text-brand-card">
-                  <svg viewBox={`0 0 ${size} ${size}`} className="w-24 h-24">
-                    {sections}
-                  </svg>
+            <div className={`${widthClass} bg-black p-1 ${containerShapeClass} overflow-hidden`}>
+              <div className={`grid ${gridCols} gap-1`}>
+                {finalCellClasses.map((colorClass, i) => (
+                  <div
+                    key={i}
+                    className={`w-full aspect-square ${colorClass} ${getCornerClasses(i)} transition-colors duration-300`}
+                  />
+                ))}
               </div>
-               <p className="text-brand-text-light font-semibold mt-2 text-center tabular-nums">
-                  {filledSections} de {totalSections} {totalSections === 2 ? 'mitades' : 'cuartos'} completos
-              </p>
+            </div>
+            <p className="text-brand-text-light font-semibold mt-3 text-center tabular-nums">
+              {description}
+            </p>
           </div>
         );
       }
@@ -469,19 +511,6 @@
 
             return 0; // Fallback
         }, [baseItem, selectedFlavors, hasFlavors]);
-        
-        const visualizerSections = useMemo(() => {
-            if (totalPortions === 12) return 4;
-            if (totalPortions === 6) return 2;
-            return 0;
-        }, [totalPortions]);
-
-        const filledVisualizerSections = useMemo(() => {
-            if (visualizerSections === 0) return 0;
-            // A base portion unit is 3 slices (e.g., a quarter of a 12-slice pizza)
-            return filledPortions / 3;
-        }, [filledPortions, visualizerSections]);
-
 
         const handleAddFlavor = (item, portions) => {
           if (portions > remainingPortions) return;
@@ -496,20 +525,12 @@
           });
         };
 
-        const handleConfirm = () => {
-          const finalSelectedFlavors = Object.entries(selectedFlavors).map(([id, portions]) => ({
-            item: itemsById[id],
-            portions: portions,
-          }));
-
-          onConfirm({
-            baseItem: baseItem,
-            selectedFlavors: finalSelectedFlavors,
-            price: price,
-          });
-        };
-
         const getPortionLabel = (portions, total) => {
+            if (baseItem.id === 903) {
+                if (portions === 4) return '⅓';
+                if (portions === 8) return '⅔';
+                if (portions === 12) return 'Completa';
+            }
             if (portions === total) return 'Completa';
             if (total === 6) return '½'; // for 3 portions
             if (total === 12) {
@@ -520,9 +541,52 @@
             return `${portions} porc.`; // Fallback
         };
 
+        const handleConfirmMastroPizza = (pizzaData) => {
+            const { baseItem, selectedFlavors, price } = pizzaData;
+
+            const customId = `mastro-${Date.now()}`;
+            const description = selectedFlavors
+                .map(f => {
+                  const portionLabel = getPortionLabel(f.portions, baseItem.portions);
+                  return `${f.item.name} (${portionLabel})`;
+                })
+                .join(' + ');
+
+            const mastroPizzaItem = {
+                id: customId,
+                name: baseItem.name,
+                description: description, // Used for display in the cart on the page
+                price: price,
+                category: Category.Pizzas,
+                // New properties for detailed WhatsApp message
+                totalPortions: baseItem.portions,
+                flavors: selectedFlavors.map(f => ({ name: f.item.name, portions: f.portions })),
+            };
+            
+            onConfirm(mastroPizzaItem);
+        };
+
+        const handleConfirm = () => {
+          const finalSelectedFlavors = Object.entries(selectedFlavors).map(([id, portions]) => ({
+            item: itemsById[id],
+            portions: portions,
+          }));
+
+          handleConfirmMastroPizza({
+            baseItem: baseItem,
+            selectedFlavors: finalSelectedFlavors,
+            price: price,
+          });
+        };
+
         const getPortionButtons = (item) => {
             let buttons = [];
-            if (totalPortions === 12) {
+            if (baseItem.id === 903) { // 12 portions, 3 flavors
+                buttons = [
+                    { portions: 4, label: '⅓' },
+                    { portions: 12, label: 'Completa' },
+                ];
+            } else if (totalPortions === 12) { // 12 portions, 4 flavors
                 buttons = [
                     { portions: 3, label: '¼' },
                     { portions: 6, label: '½' },
@@ -542,7 +606,7 @@
                 key={btn.portions}
                 onClick={() => handleAddFlavor(item, btn.portions)}
                 disabled={btn.portions > remainingPortions}
-                className="bg-brand-teal text-white px-3 py-2 text-sm rounded-md font-semibold hover:bg-teal-600 transition-all disabled:bg-gray-600/70 disabled:cursor-not-allowed whitespace-nowrap"
+                className="bg-brand-accent text-white px-3 py-2 text-sm rounded-md font-semibold hover:bg-orange-600 transition-all disabled:bg-gray-600/70 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 {totalPortions === 3 ? 'Pedir' : `+ ${btn.label}`}
               </button>
@@ -562,11 +626,11 @@
               
               <div className="flex-grow overflow-hidden flex flex-col">
                   {/* Visualizer */}
-                  {visualizerSections > 0 && (
-                    <div className="flex-shrink-0 bg-brand-card/80 backdrop-blur-sm z-10 border-b border-gray-700 py-3">
+                  {totalPortions > 0 && (
+                    <div className="flex-shrink-0 bg-brand-card/80 backdrop-blur-sm z-10 border-b border-gray-700 py-4 flex justify-center items-center">
                       <PizzaVisualizer
-                        totalSections={visualizerSections}
-                        filledSections={filledVisualizerSections}
+                        baseItem={baseItem}
+                        selectedFlavors={selectedFlavors}
                       />
                     </div>
                   )}
@@ -1378,28 +1442,7 @@
             setQuarterPizzaToAdd(null);
         };
 
-        const handleConfirmMastroPizza = (pizzaData) => {
-            const { baseItem, selectedFlavors, price } = pizzaData;
-
-            const customId = `mastro-${Date.now()}`;
-            const description = selectedFlavors
-                .map(f => {
-                  const portionLabel = {3: '¼', 6: '½', 9: '¾', 12: 'Completa'}[f.portions] || `${f.portions} porc.`;
-                  return `${f.item.name} (${portionLabel})`;
-                })
-                .join(' + ');
-
-            const mastroPizzaItem = {
-                id: customId,
-                name: baseItem.name,
-                description: description, // Used for display in the cart on the page
-                price: price,
-                category: Category.Pizzas,
-                // New properties for detailed WhatsApp message
-                totalPortions: baseItem.portions,
-                flavors: selectedFlavors.map(f => ({ name: f.item.name, portions: f.portions })),
-            };
-            
+        const handleConfirmMastroPizza = (mastroPizzaItem) => {
             addToCart(mastroPizzaItem, 1);
             closeMastroBuilder();
         };
@@ -1475,11 +1518,13 @@
               onClose={() => setQuarterPizzaToAdd(null)}
               onConfirm={handleConfirmAddQuarterPizza}
             />
-            <MastroBuilderModal 
-              baseItem={mastroBuilderState.baseItem} 
-              onClose={closeMastroBuilder} 
-              onConfirm={handleConfirmMastroPizza} 
-            />
+            {mastroBuilderState.isOpen && (
+              <MastroBuilderModal 
+                baseItem={mastroBuilderState.baseItem} 
+                onClose={closeMastroBuilder} 
+                onConfirm={handleConfirmMastroPizza} 
+              />
+            )}
             
             {/* Mobile-only Bottom Nav */}
             <BottomNav view={view} setView={handleSetView} cartCount={cartCount} />
