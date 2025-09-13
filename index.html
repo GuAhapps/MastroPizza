@@ -313,9 +313,12 @@
         }, [selectedCategory]);
 
         return (
-            <nav className="sticky top-[4.5rem] lg:top-0 bg-brand-header z-10 border-b border-t border-gray-700 lg:rounded-t-md">
+            <nav className="sticky top-[4.5rem] lg:top-0 bg-brand-header z-10 border-b border-gray-700 lg:rounded-t-md">
                 <div className="max-w-7xl mx-auto">
-                  <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
+                    <div className="text-center pt-4 pb-2">
+                      <h1 className="text-3xl font-light text-brand-text uppercase tracking-wider font-display">Ciudad de Pergamino</h1>
+                    </div>
+                    <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
                       {categories.map(category => (
                           <button
                               key={category}
@@ -330,7 +333,7 @@
                               {category}
                           </button>
                       ))}
-                  </div>
+                    </div>
                 </div>
             </nav>
         );
@@ -396,7 +399,7 @@
                             { !item.isMastro && <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span> }
                             <button 
                                 onClick={() => onAdd(item)} 
-                                className={`bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 ${item.isMastro ? 'w-full' : (item.isPromo ? 'px-5' : 'px-4')}`}
+                                className={`bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 ${item.isMastro ? 'w-full' : (item.isPromo ? 'px-8' : 'px-4')}`}
                             >
                                 {item.isMastro ? 'Armar Pizza' : (item.isPromo ? 'Pedir' : 'Agregar')}
                             </button>
