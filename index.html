@@ -139,10 +139,18 @@
         Pizzas: 'Pizzas',
         Hamburguesas: 'Hamburguesas',
         Sanguches: 'Sánguches',
-        Bebidas: 'Bebidas',
       };
 
       const menuItems = [
+        {
+          id: 1000,
+          name: 'Combo Mini Mastro',
+          category: Category.Pizzas,
+          description: 'Mini pizza de 3 porciones + gaseosa de 500ml',
+          price: 5000,
+          imageUrls: ['https://scontent.faep9-1.fna.fbcdn.net/v/t39.30808-6/435626298_951071273685651_118182989182069670_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=u0Z_W0_y4JgQ7kNvgH0hXfA&_nc_ht=scontent.faep9-1.fna&oh=00_AYC2vV44IqW2tY7jR_p4r64EwzM7rD6kL3rVv2D_D-n_OQ&oe=66736458'],
+          isPromo: true,
+        },
         // MastroPizzas
         {
           id: 901,
@@ -173,6 +181,16 @@
           imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
           isMastro: true,
           portions: 6,
+        },
+        {
+          id: 904,
+          name: 'Mastropizza de 3 porciones, 1 sabor',
+          category: Category.Pizzas,
+          description: '¡Un cuarto de pizza! Elige tu sabor favorito.',
+          price: 5000,
+          imageUrls: ['https://s2-oglobo.glbimg.com/5d4BjkYykotKFxtGv41iLOMOp8A=/0x0:2355x1592/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/Z/T/Bo7lsdTdKS8PEdYuautg/107608847.jpg'],
+          isMastro: true,
+          portions: 3,
         },
         // Pizzas
         { id: 101, name: 'Pizza de Acelga y Roquefort', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, acelga, roquefort, parmesano, orégano, aceituna.', price: 18000, halfPrice: 10500, quarterPrice: 5000, ingredients: ['Salsa de tomate', 'mozzarella', 'acelga', 'roquefort', 'parmesano', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
@@ -224,19 +242,14 @@
         { id: 147, name: 'Pizza de Provoleta', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, rúcula, parmesano, provoleta, orégano, aceituna.', price: 18000, halfPrice: 10500, quarterPrice: 5000, ingredients: ['Salsa de tomate', 'mozzarella', 'rúcula', 'parmesano', 'provoleta', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
         { id: 148, name: 'Pizza de Peperoni', category: Category.Pizzas, description: 'Salsa de tomate, mozzarella, peperoni, orégano, aceituna.', price: 18000, halfPrice: 10500, quarterPrice: 5000, ingredients: ['Salsa de tomate', 'mozzarella', 'peperoni', 'orégano', 'aceituna'], prepTime: '20-25 min', imageUrls: ['https://dieguitoushuaia.com/wp-content/uploads/2020/09/muzzarella.jpg']},
         // Hamburguesas
-        { id: 5, name: 'Hamburguesa Clásica', category: Category.Hamburguesas, description: 'Carne de primera, lechuga, tomate y nuestra salsa especial en pan brioche.', price: 100, ingredients: ['Carne de res', 'Pan brioche', 'Lechuga', 'Tomate', 'Cebolla', 'Salsa especial'], prepTime: '15-20 min', imageUrls: ['https://jetextramar.com/wp-content/uploads/2021/07/congelados-receta-hamburguesa-de-pollo-1024x768.jpg']},
-        { id: 6, name: 'Hamburguesa Doble Cheddar', category: Category.Hamburguesas, description: 'Doble medallón de carne, doble porción de queso cheddar y panceta crujiente.', price: 100, ingredients: ['Doble carne de res', 'Pan brioche', 'Queso cheddar', 'Panceta', 'Pepinillos'], prepTime: '15-20 min', imageUrls: ['https://media-cdn.tripadvisor.com/media/photo-s/1c/c7/15/d1/holy-cheese-doble-hamburguesa.jpg']},
-        { id: 7, name: 'Hamburguesa Criolla', category: Category.Hamburguesas, description: 'Con provoleta grillada, morrones asados y salsa criolla.', price: 100, ingredients: ['Carne de res', 'Pan rústico', 'Queso provoleta', 'Morrones asados', 'Huevo frito', 'Salsa criolla'], prepTime: '20-25 min', imageUrls: ['https://i.pinimg.com/1200x/03/82/15/0382153476c9ca4d2b7dfe4b69032bf7.jpg']},
-        { id: 8, name: 'Hamburguesa Veggie', category: Category.Hamburguesas, description: 'Medallón de lentejas y champiñones, con rúcula, tomate y mayonesa de palta.', price: 100, ingredients: ['Medallón de lentejas', 'Pan integral', 'Rúcula', 'Tomate', 'Mayonesa de palta', 'Cebolla morada'], prepTime: '15-20 min', imageUrls: ['https://www.conasi.eu/blog/wp-content/uploads/2022/05/hamburguesa-vegana-1.jpg']},
+        { id: 5, name: 'Hamburguesa Simple', category: Category.Hamburguesas, description: 'Medallón de carne y queso, acompañada de papas fritas.', sizes: [{ name: 'Simple', price: 7000 }, { name: 'Doble', price: 8000 }, { name: 'Triple', price: 9000 }], ingredients: ['Medallón de carne', 'Queso', 'Papas fritas'], imageUrls: ['']},
+        { id: 6, name: 'Hamburguesa Completa', category: Category.Hamburguesas, description: 'Medallón de carne, jamón, queso, huevo frito, tomate y lechuga, con papas fritas.', sizes: [{ name: 'Simple', price: 8000 }, { name: 'Doble', price: 9000 }, { name: 'Triple', price: 10000 }], ingredients: ['Medallón de carne', 'Jamón', 'Queso', 'Huevo frito', 'Tomate', 'Lechuga', 'Papas fritas'], imageUrls: ['']},
+        { id: 7, name: 'Hamburguesa Panceta y Cheddar', category: Category.Hamburguesas, description: 'Medallón de carne, panceta, cheddar, huevo frito, tomate y lechuga, con papas fritas.', sizes: [{ name: 'Simple', price: 8000 }, { name: 'Doble', price: 9000 }, { name: 'Triple', price: 10000 }], ingredients: ['Medallón de carne', 'Panceta', 'Cheddar', 'Huevo frito', 'Tomate', 'Lechuga', 'Papas fritas'], imageUrls: ['']},
+        { id: 8, name: 'Hamburguesa Criolla', category: Category.Hamburguesas, description: 'Medallón de carne, jamón, queso, cebolla, morrón, huevo frito, tomate y lechuga, con papas fritas.', sizes: [{ name: 'Simple', price: 8000 }, { name: 'Doble', price: 9000 }, { name: 'Triple', price: 10000 }], ingredients: ['Medallón de carne', 'Jamón', 'Queso', 'Cebolla', 'Morrón', 'Huevo frito', 'Tomate', 'Lechuga', 'Papas fritas'], imageUrls: ['']},
         // Sánguches
-        { id: 17, name: 'Sánguche de Milanesa Completo', category: Category.Sanguches, description: 'Milanesa de ternera, lechuga, tomate, jamón, queso y huevo frito en pan francés.', price: 100, ingredients: ['Pan francés', 'Milanesa de ternera', 'Lechuga', 'Tomate', 'Jamón', 'Queso', 'Huevo frito'], prepTime: '15-20 min', imageUrls: ['https://www.tafiviejo.gob.ar/fotos/cache/notas/2024/10/08/830x465_241008004008_43152.jpg']},
-        { id: 18, name: 'Sánguche de Lomito', category: Category.Sanguches, description: 'Bife de lomo tierno, lechuga, tomate, jamón, queso, huevo y mayonesa casera.', price: 100, ingredients: ['Pan árabe', 'Bife de lomo', 'Lechuga', 'Tomate', 'Jamón', 'Queso', 'Huevo frito', 'Mayonesa'], prepTime: '15-20 min', imageUrls: ['https://www.clarin.com/img/2021/07/19/hgA-CEG32_1256x620__2.jpg']},
-        { id: 19, name: 'Triple Tostado', category: Category.Sanguches, description: 'Un clásico sándwich de tres capas con jamón, queso, lechuga y tomate, perfectamente tostado.', price: 100, ingredients: ['Pan de miga triple', 'Jamón cocido', 'Queso de máquina', 'Lechuga', 'Tomate'], prepTime: '10-15 min', imageUrls: ['https://img-global.cpcdn.com/recipes/59296a703611b07c/300x426cq80/sandwich-triple-de-jamon-y-queso-foto-principal.webp']},
-        // Bebidas
-        { id: 25, name: 'Gaseosa Línea Coca-Cola', category: Category.Bebidas, description: 'Lata de 354ml. Elige entre Coca-Cola Original, Sin Azúcar o Light.', price: 100, ingredients: [], prepTime: 'N/A', imageUrls: ['https://latorrepizza.com.ar/wp-content/uploads/2023/03/B-GASEOSAS-min.jpg']},
-        { id: 26, name: 'Agua Saborizada', category: Category.Bebidas, description: 'Botella de 500ml. Sabores: Manzana, Naranja, Pomelo.', price: 100, ingredients: [], prepTime: 'N/A', imageUrls: ['https://acdn.mitiendanube.com/stores/001/157/846/products/levitess-4e72e9073979c1786317062059644811-480-0.webp']},
-        { id: 27, name: 'Cerveza Quilmes Clásica', category: Category.Bebidas, description: 'Lata de 473ml de la cerveza más popular de Argentina.', price: 100, ingredients: [], prepTime: 'N/A', imageUrls: ['https://shop.gustoargentino.com/cdn/shop/files/cerveza-quilmes.png?v=1741175524&width=640']},
-        { id: 28, name: 'Vino Malbec (Copa)', category: Category.Bebidas, description: 'Una copa de nuestro Malbec de la casa, intenso y frutado.', price: 100, ingredients: [], prepTime: 'N/A', imageUrls: ['https://static.wixstatic.com/media/fe24ac_b2fe3b0b1fb84203891261b4fe4615b6~mv2.webp']},
+        { id: 301, name: 'Sánguche de Lomito', category: Category.Sanguches, description: 'Lomito, jamón, queso, huevo frito, lechuga, tomate, con papas fritas.', price: 13000, ingredients: ['Pan', 'Lomito', 'Jamón', 'Queso', 'Huevo frito', 'Lechuga', 'Tomate', 'Papas fritas'], imageUrls: ['']},
+        { id: 302, name: 'Sánguche Juanacho', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan de miga.', sizes: [{ name: 'Simple', price: 5000 }, { name: 'Doble', price: 6500 }], ingredients: ['Pan de miga', 'Jamón', 'Queso', 'Lechuga', 'Tomate'], imageUrls: ['']},
+        { id: 303, name: 'Sánguche Sacramento', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan árabe.', sizes: [{ name: 'Simple', price: 6000 }, { name: 'Doble', price: 7500 }], ingredients: ['Pan árabe', 'Jamón', 'Queso', 'Lechuga', 'Tomate'], imageUrls: ['']},
       ];
 
       const itemsById = menuItems.reduce((acc, item) => {
@@ -287,7 +300,7 @@
       }
       
       function CategoryNav({ selectedCategory, setSelectedCategory }) {
-        const categories = [Category.Todos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
+        const categories = [Category.Todos, Category.Pizzas, Category.Hamburguesas, Category.Sanguches];
         const navRef = useRef(null);
 
         useEffect(() => {
@@ -327,7 +340,7 @@
         const isStandardPizza = item.category === Category.Pizzas && !item.isMastro && item.halfPrice && item.quarterPrice;
 
         const handleImageClick = () => {
-          if (item.isMastro) {
+          if (item.isMastro || item.id === 1000) {
             onAdd(item);
           } else {
             onSelect(item);
@@ -383,9 +396,9 @@
                             { !item.isMastro && <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span> }
                             <button 
                                 onClick={() => onAdd(item)} 
-                                className={`bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 ${item.isMastro ? 'w-full' : 'px-4'}`}
+                                className={`bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 ${item.isMastro ? 'w-full' : (item.isPromo ? 'px-5' : 'px-4')}`}
                             >
-                                {item.isMastro ? 'Armar Pizza' : 'Agregar'}
+                                {item.isMastro ? 'Armar Pizza' : (item.isPromo ? 'Pedir' : 'Agregar')}
                             </button>
                         </div>
                     )}
@@ -398,10 +411,12 @@
       function PizzaVisualizer({ baseItem, selectedFlavors = {} }) {
         const totalPortions = baseItem.portions;
         const isLargePizza = totalPortions === 12;
-        const totalCells = isLargePizza ? 12 : 6;
-        const gridCols = isLargePizza ? 'grid-cols-6' : 'grid-cols-3';
-        const widthClass = isLargePizza ? 'w-64' : 'w-32';
-        const containerShapeClass = isLargePizza ? 'rounded-full' : 'rounded-l-full';
+        const isQuarterPizza = totalPortions === 3;
+
+        const totalCells = isLargePizza ? 12 : (isQuarterPizza ? 3 : 6);
+        const gridCols = isLargePizza ? 'grid-cols-6' : (isQuarterPizza ? 'grid-cols-1' : 'grid-cols-3');
+        const widthClass = isLargePizza ? 'w-64' : (isQuarterPizza ? 'w-16' : 'w-32');
+        const containerShapeClass = isLargePizza ? 'rounded-full' : (isQuarterPizza ? 'rounded-tl-full rounded-bl-full' : 'rounded-l-full');
 
         const fillColor = 'bg-orange-500';
         
@@ -420,6 +435,10 @@
                     }
                 });
             });
+        } else if (isQuarterPizza) {
+            if (filledPortions > 0) {
+                finalCellClasses.fill(fillColor);
+            }
         } else { // Default logic for 2/4 flavors
             const verticalCellOrder12 = [0, 6, 1, 7, 2, 8, 3, 9, 4, 10, 5, 11]; // Fills left-to-right
             const horizontalCellOrder12 = Array.from(Array(12).keys()); // Fills top-to-bottom [0, 1, ..., 11]
@@ -453,6 +472,8 @@
             description = `${filledPortions / 4} de 3 sabores seleccionados`;
         } else if (baseItem.id === 902) { // 2 flavors
             description = `${filledPortions / 3} de 2 sabores seleccionados`;
+        } else if (isQuarterPizza) {
+            description = `${filledPortions > 0 ? 1 : 0} de 1 sabor seleccionado`;
         } else {
             description = `${filledPortions} de ${totalPortions} porciones`;
         }
@@ -463,6 +484,9 @@
             if (index === 5) return 'rounded-tr-full';
             if (index === 6) return 'rounded-bl-full';
             if (index === 11) return 'rounded-br-full';
+          } else if (isQuarterPizza) {
+            if (index === 0) return 'rounded-tl-full';
+            if (index === 2) return 'rounded-bl-full';
           } else { // 3x2 grid for 6 portions
             if (index === 0) return 'rounded-tl-full';
             if (index === 3) return 'rounded-bl-full';
@@ -501,7 +525,7 @@
           setSelectedFlavors({});
         }, [baseItem]);
         
-        const pizzaFlavors = useMemo(() => menuItems.filter(item => item.category === Category.Pizzas && !item.isMastro), []);
+        const pizzaFlavors = useMemo(() => menuItems.filter(item => item.category === Category.Pizzas && !item.isMastro && !item.isPromo), []);
 
         const totalPortions = currentBaseItem.portions;
         const filledPortions = Object.values(selectedFlavors).reduce((sum, p) => sum + p, 0);
@@ -512,10 +536,11 @@
         const price = useMemo(() => {
             if (!currentBaseItem || !hasFlavors) return 0;
             const flavorIds = Object.keys(selectedFlavors);
+            const flavorId = flavorIds[0];
 
             if (currentBaseItem.portions === 3) {
-                // The price is the full price of the chosen flavor
-                return itemsById[flavorIds[0]].price;
+                // The price is the quarter price of the chosen flavor
+                return flavorId ? itemsById[flavorId].quarterPrice : 0;
             }
             if (currentBaseItem.portions === 6) {
                 // Price is the highest halfPrice among selected flavors
@@ -740,6 +765,70 @@
         );
       }
 
+      function ComboBuilderModal({ item, onClose, onConfirm }) {
+        const [selectedFlavor, setSelectedFlavor] = useState(null);
+        
+        const pizzaFlavors = useMemo(() => 
+          menuItems.filter(i => i.category === Category.Pizzas && !i.isMastro && !i.isPromo), 
+          []
+        );
+
+        if (!item) return null;
+
+        const handleConfirm = () => {
+          if (selectedFlavor) {
+            onConfirm(item, selectedFlavor);
+          }
+        };
+
+        return (
+          <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center animate-fade-in p-4" onClick={onClose}>
+            <div className="bg-brand-card rounded-md shadow-xl w-full max-w-md h-[90vh] flex flex-col animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
+              {/* Header */}
+              <div className="p-4 border-b border-gray-700 flex-shrink-0 text-center">
+                <h2 className="text-2xl font-extralight text-brand-accent font-display">Arma tu {item.name}</h2>
+                <p className="text-brand-text-light font-light mt-1">{item.description}</p>
+                <p className="font-semibold mt-2 text-brand-text">Elegí tu gusto de pizza:</p>
+              </div>
+              
+              {/* Flavor List */}
+              <div className="flex-grow overflow-y-auto p-4 space-y-2 no-scrollbar">
+                {pizzaFlavors.map(flavor => (
+                  <button 
+                    key={flavor.id} 
+                    onClick={() => setSelectedFlavor(flavor)}
+                    className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
+                      selectedFlavor?.id === flavor.id 
+                      ? 'bg-brand-accent/20 border-brand-accent' 
+                      : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
+                    }`}
+                  >
+                    <h4 className="font-semibold text-brand-text">{flavor.name.replace(/^Pizza (de )?/, '')}</h4>
+                  </button>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="p-4 border-t border-gray-700 flex-shrink-0 bg-brand-header rounded-b-md">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-lg font-semibold text-brand-text">Precio del Combo:</span>
+                    <span className="text-2xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button onClick={onClose} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
+                    <button 
+                      onClick={handleConfirm} 
+                      disabled={!selectedFlavor} 
+                      className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                      Agregar al Carrito
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
       function AddToCartModal({ item, onClose, onConfirm }) {
           const [quantity, setQuantity] = useState(1);
 
@@ -913,24 +1002,95 @@
         );
       }
 
+      function MenuListItem({ item, onAdd }) {
+        const hasSizes = item.sizes && item.sizes.length > 0;
+
+        const handleAdd = (item, size = null) => {
+          if (size) {
+            const sizedItem = {
+              ...item,
+              id: `${item.id}-${size.name.toLowerCase()}`,
+              name: `${item.name} (${size.name})`,
+              price: size.price,
+              sizes: undefined, // Clear sizes for the cart item
+            };
+            onAdd(sizedItem);
+          } else {
+            onAdd(item);
+          }
+        };
+
+        return (
+          <div className="bg-brand-card rounded-md border border-gray-700 p-4 flex flex-col animate-fade-in-up transition-all hover:border-brand-accent/50">
+            {/* Text content */}
+            <div className="flex-grow mb-4">
+              <h3 className="text-lg font-extralight text-brand-text">{item.name}</h3>
+              <p className="text-brand-text-light text-sm font-light">{item.description}</p>
+            </div>
+            
+            {/* Actions and Price */}
+            <div className="flex-shrink-0 flex flex-col items-stretch w-full mt-auto">
+              {hasSizes ? (
+                <div className={`grid ${item.sizes.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-4 text-center`}>
+                    {item.sizes.map(size => (
+                        <div key={size.name} className="flex flex-col items-center space-y-2">
+                            <span className="font-semibold text-brand-text">{size.name}</span>
+                            <span className="text-brand-accent font-bold text-lg tabular-nums">{formatPrice(size.price)}</span>
+                            <button
+                                onClick={() => handleAdd(item, size)}
+                                className="bg-brand-accent text-white py-2 rounded-md font-semibold hover:bg-orange-600 transition-all w-full text-sm"
+                            >
+                                Agregar
+                            </button>
+                        </div>
+                    ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-between w-full">
+                  <span className="text-xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
+                  <button
+                      onClick={() => handleAdd(item)}
+                      className="bg-brand-accent text-white py-2 px-5 rounded-md font-semibold hover:bg-orange-600 transition-all transform hover:scale-105"
+                    >
+                      Agregar
+                    </button>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+
       function MenuPage({ onSelectItem, onAdd, selectedCategory, onAddHalf, onAddQuarter }) {
         const renderAllItems = () => {
-            const categoryOrder = [Category.Pizzas, Category.Hamburguesas, Category.Sanguches, Category.Bebidas];
+            const categoryOrder = [Category.Pizzas, Category.Hamburguesas, Category.Sanguches];
             
             return (
                 <div className="p-4 space-y-8">
                     {categoryOrder.map(category => {
-                        const itemsInCategory = menuItems.filter(item => item.category === category && item.id !== 903);
+                        const itemsInCategory = menuItems.filter(item => 
+                            item.category === category && (category !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903
+                        );
                         if (itemsInCategory.length === 0) return null;
                         
+                        const isListView = category === Category.Hamburguesas || category === Category.Sanguches;
+
                         return (
                             <section key={category} aria-labelledby={`category-title-${category}`}>
                                 <h2 id={`category-title-${category}`} className="font-display text-2xl font-extralight text-brand-accent pb-2 mb-6 border-b-2 border-brand-accent/30">{category}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {itemsInCategory.map(item => (
-                                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} onAddQuarter={onAddQuarter} />
-                                    ))}
-                                </div>
+                                { isListView ? (
+                                    <div className="space-y-4">
+                                      {itemsInCategory.map(item => (
+                                        <MenuListItem key={item.id} item={item} onAdd={onAdd} />
+                                      ))}
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {itemsInCategory.map(item => (
+                                            <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} onAddQuarter={onAddQuarter} />
+                                        ))}
+                                    </div>
+                                )}
                             </section>
                         );
                     })}
@@ -939,12 +1099,26 @@
         };
 
         const renderFilteredItems = () => {
-            const filteredItems = menuItems.filter(item => item.category === selectedCategory && item.id !== 903);
+            const filteredItems = menuItems.filter(item => 
+                item.category === selectedCategory && (selectedCategory !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903
+            );
+            const isListView = selectedCategory === Category.Hamburguesas || selectedCategory === Category.Sanguches;
+            
             return (
-                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredItems.map(item => (
-                        <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} onAddQuarter={onAddQuarter} />
-                    ))}
+                <div className="p-4">
+                    { isListView ? (
+                        <div className="space-y-4">
+                            {filteredItems.map(item => (
+                                <MenuListItem key={item.id} item={item} onAdd={onAdd} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {filteredItems.map(item => (
+                                <MenuItemCard key={item.id} item={item} onSelect={onSelectItem} onAdd={onAdd} onAddHalf={onAddHalf} onAddQuarter={onAddQuarter} />
+                            ))}
+                        </div>
+                    )}
                 </div>
             );
         };
@@ -976,7 +1150,8 @@
                     </p>
                     <div className="border-t border-gray-700 my-4"></div>
                     <h3 className="text-xl font-extralight text-brand-text mb-2">Horarios</h3>
-                    <p className="text-brand-text-light font-light mb-4">Martes a Domingos: 19:00hs a 23:30hs</p>
+                    <p className="text-brand-text-light font-light">Lunes a Sábados: 11:30hs a 14:00hs - 19:30hs a 23:50hs</p>
+                    <p className="text-brand-text-light font-light mb-4">Domingo: 19:30hs a 23:50hs</p>
 
                     <div className="border-t border-gray-700 my-4"></div>
                     <h3 className="text-xl font-extralight text-brand-text mb-2">Ubicación</h3>
@@ -1011,6 +1186,11 @@
                         </a>
                     </div>
                 </div>
+                <div className="text-center mt-6 text-brand-text-light text-sm font-light text-[125%]">
+                  <p>App creada por Keila Portillo</p>
+                  <p>2477-238364</p>
+                  <p>Pergamino - Buenos Aires</p>
+                </div>
            </div>
         );
       }
@@ -1026,9 +1206,9 @@
         const cartItems = useMemo(() => {
             return Object.entries(cart)
                 .map(([id, quantity]) => {
-                    const item = allItems[id];
+                    const item = allItems[id] || menuItems.find(mi => mi.id == id.split('-')[0]);
                     // Ensure item exists before spreading, convert id to string for startsWith
-                    return item ? { ...item, id: String(item.id), quantity } : null;
+                    return item ? { ...item, id: String(id), quantity } : null;
                 })
                 .filter(item => item && item.id);
         }, [cart, allItems]);
@@ -1077,7 +1257,11 @@
                   }).join(' - ');
                   
                   orderLines.push(`*${size}- ${flavorDetails}*`);
-              } 
+              }
+              // Combo
+              else if (item.isCombo) {
+                  orderLines.push(`*${item.name} (${item.description}) – ${formatPrice(item.price)}*`);
+              }
               // Half Pizza (quantity is always 1)
               else if (item.isHalf || String(item.id).endsWith('-half')) {
                   const baseName = item.name.replace('Media ', '');
@@ -1145,7 +1329,7 @@
             )
         }
         
-        const isFractionalPizza = (item) => item.isHalf || String(item.id).endsWith('-half') || item.isQuarter || String(item.id).endsWith('-quarter') || item.id.startsWith('mastro-');
+        const isFixedQuantityItem = (item) => item.isHalf || String(item.id).endsWith('-half') || item.isQuarter || String(item.id).endsWith('-quarter') || item.id.startsWith('mastro-') || item.id.startsWith('combo-') || (item.sizes && item.sizes.length > 0);
 
         // --- Desktop View ---
         if (isDesktop) {
@@ -1164,14 +1348,14 @@
                                 <div key={item.id} className="flex items-center justify-between py-2 border-b border-gray-700/50 last:border-b-0 gap-2 bg-gray-800/50 p-3 rounded-md">
                                     <div className="flex-grow">
                                         <p className="font-semibold text-sm">{item.name}</p>
-                                        {(item.id.startsWith('mastro-') || item.isHalf || item.isQuarter) && item.description && <p className="text-xs text-brand-text-light font-light mt-1">{item.description}</p>}
+                                        {(item.id.startsWith('mastro-') || item.isHalf || item.isQuarter || item.isCombo) && item.description && <p className="text-xs text-brand-text-light font-light mt-1">{item.description}</p>}
                                         <div className="flex items-center space-x-3 mt-2">
                                             <div className="flex items-center space-x-1 rounded-md bg-gray-900 p-0.5">
-                                                <button onClick={() => updateCart(item.id, item.quantity - 1)} className="bg-gray-700 hover:bg-gray-600 rounded p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFractionalPizza(item)} aria-label={`Disminuir cantidad de ${item.name}`}>
+                                                <button onClick={() => updateCart(item.id, item.quantity - 1)} className="bg-gray-700 hover:bg-gray-600 rounded p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFixedQuantityItem(item)} aria-label={`Disminuir cantidad de ${item.name}`}>
                                                     <MinusIcon />
                                                 </button>
                                                 <span className="font-bold w-5 text-center text-sm" aria-live="polite">{item.quantity}</span>
-                                                <button onClick={() => updateCart(item.id, item.quantity + 1)} className="bg-gray-700 hover:bg-gray-600 rounded p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFractionalPizza(item)} aria-label={`Aumentar cantidad de ${item.name}`}>
+                                                <button onClick={() => updateCart(item.id, item.quantity + 1)} className="bg-gray-700 hover:bg-gray-600 rounded p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFixedQuantityItem(item)} aria-label={`Aumentar cantidad de ${item.name}`}>
                                                     <PlusIcon />
                                                 </button>
                                             </div>
@@ -1244,14 +1428,14 @@
                     <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-700 last:border-b-0 gap-2">
                         <div className="flex-grow">
                             <p className="font-semibold">{item.name}</p>
-                            {(item.id.startsWith('mastro-') || item.isHalf || item.isQuarter) && item.description && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
+                            {(item.id.startsWith('mastro-') || item.isHalf || item.isQuarter || item.isCombo) && item.description && <p className="text-sm text-brand-text-light font-light">{item.description}</p>}
                             <div className="flex items-center space-x-4 mt-2">
                                 <div className="flex items-center space-x-2 rounded-md bg-gray-800 p-1">
-                                    <button onClick={() => updateCart(item.id, item.quantity - 1)} className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFractionalPizza(item)} aria-label={`Disminuir cantidad de ${item.name}`}>
+                                    <button onClick={() => updateCart(item.id, item.quantity - 1)} className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFixedQuantityItem(item)} aria-label={`Disminuir cantidad de ${item.name}`}>
                                         <MinusIcon />
                                     </button>
                                     <span className="font-bold w-6 text-center" aria-live="polite">{item.quantity}</span>
-                                    <button onClick={() => updateCart(item.id, item.quantity + 1)} className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFractionalPizza(item)} aria-label={`Aumentar cantidad de ${item.name}`}>
+                                    <button onClick={() => updateCart(item.id, item.quantity + 1)} className="bg-gray-700 hover:bg-gray-600 rounded-md p-1 text-brand-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled={isFixedQuantityItem(item)} aria-label={`Aumentar cantidad de ${item.name}`}>
                                         <PlusIcon />
                                     </button>
                                 </div>
@@ -1341,6 +1525,7 @@
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
         const [halfPizzaToAdd, setHalfPizzaToAdd] = useState(null);
         const [quarterPizzaToAdd, setQuarterPizzaToAdd] = useState(null);
+        const [comboBuilderItem, setComboBuilderItem] = useState(null);
         const [selectedCategory, setSelectedCategory] = useState(Category.Todos);
         const [mastroBuilderState, setMastroBuilderState] = useState({
           isOpen: false,
@@ -1380,7 +1565,7 @@
             if (quantity <= 0) {
               delete newCart[itemId];
               // Also remove from custom items if it exists there
-              if (String(itemId).startsWith('mastro-') || String(itemId).endsWith('-half') || String(itemId).endsWith('-quarter')) {
+              if (String(itemId).startsWith('mastro-') || String(itemId).endsWith('-half') || String(itemId).endsWith('-quarter') || String(itemId).startsWith('combo-')) {
                   setCustomItems(prevCustom => {
                       const newCustom = {...prevCustom};
                       delete newCustom[itemId];
@@ -1396,7 +1581,7 @@
 
         const addToCart = useCallback((item, quantity) => {
             const itemId = item.id;
-            if (item.isHalf || item.isQuarter || String(item.id).startsWith('mastro-')) {
+            if (item.isHalf || item.isQuarter || String(item.id).startsWith('mastro-') || item.isCombo || item.name.includes('(')) {
                 setCustomItems(prev => ({...prev, [itemId]: item}));
             }
             
@@ -1423,7 +1608,9 @@
         };
         
         const handleAddItemClick = (item) => {
-          if (item.isMastro) {
+          if (item.id === 1000) { // Specific ID for Combo Mini Mastro
+            setComboBuilderItem(item);
+          } else if (item.isMastro) {
             openMastroBuilder(item);
           } else {
             setItemToQuickAdd(item);
@@ -1485,6 +1672,19 @@
             closeMastroBuilder();
         };
 
+        const handleConfirmCombo = (comboItem, selectedFlavor) => {
+            const comboId = `combo-${Date.now()}`;
+            const customComboItem = {
+                ...comboItem,
+                id: comboId,
+                name: 'Combo Mini Mastro',
+                description: `Sabor: ${selectedFlavor.name.replace(/^Pizza (de )?/, '')}`,
+                price: comboItem.price,
+                isCombo: true,
+            };
+            addToCart(customComboItem, 1);
+            setComboBuilderItem(null);
+        };
 
         const cartCount = useMemo(() => Object.values(cart).reduce((sum, q) => sum + q, 0), [cart]);
 
@@ -1561,6 +1761,13 @@
                 baseItem={mastroBuilderState.baseItem} 
                 onClose={closeMastroBuilder} 
                 onConfirm={handleConfirmMastroPizza} 
+              />
+            )}
+            {comboBuilderItem && (
+              <ComboBuilderModal
+                item={comboBuilderItem}
+                onClose={() => setComboBuilderItem(null)}
+                onConfirm={handleConfirmCombo}
               />
             )}
             
