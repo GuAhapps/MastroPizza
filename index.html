@@ -4,7 +4,7 @@
     <meta charset="utf-t-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F97316">
-    <title>Mastropizzas - Pergamino</title>
+    <title>MastroPizza - Pergamino</title>
     <link rel="icon" type="image/png" href="https://archive.org/download/favicom-01/favicom-01.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -151,10 +151,10 @@
           imageUrls: ['https://scontent.faep9-1.fna.fbcdn.net/v/t39.30808-6/435626298_951071273685651_118182989182069670_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=u0Z_W0_y4JgQ7kNvgH0hXfA&_nc_ht=scontent.faep9-1.fna&oh=00_AYC2vV44IqW2tY7jR_p4r64EwzM7rD6kL3rVv2D_D-n_OQ&oe=66736458'],
           isPromo: true,
         },
-        // MastroPizzas
+        // MastroPizza
         {
           id: 901,
-          name: 'Mastropizzas de 12 porciones, hasta 4 sabores',
+          name: 'MastroPizza de 12 porciones, hasta 4 sabores',
           category: Category.Pizzas,
           description: '¡Pizza gigante para compartir! Elige hasta 4 sabores distintos.',
           price: 18000,
@@ -164,7 +164,7 @@
         },
         {
           id: 903,
-          name: 'Mastropizzas de 12 porciones, hasta 3 sabores',
+          name: 'MastroPizza de 12 porciones, hasta 3 sabores',
           category: Category.Pizzas,
           description: '¡Pizza gigante para compartir! Elige hasta 3 sabores de 4 porciones cada uno.',
           price: 18000,
@@ -174,7 +174,7 @@
         },
         {
           id: 902,
-          name: 'Mastropizzas de 6 porciones, hasta 2 sabores',
+          name: 'MastroPizza de 6 porciones, hasta 2 sabores',
           category: Category.Pizzas,
           description: '¡Mitad y mitad! Elige hasta 2 sabores.',
           price: 10500,
@@ -184,7 +184,7 @@
         },
         {
           id: 904,
-          name: 'Mastropizzas de 3 porciones, 1 sabor',
+          name: 'MastroPizza de 3 porciones, 1 sabor',
           category: Category.Pizzas,
           description: '¡Un cuarto de pizza! Elige tu sabor favorito.',
           price: 5000,
@@ -285,11 +285,11 @@
           <header className="bg-brand-header border-b border-gray-700 sticky top-0 z-20">
             {/* Mobile Header */}
             <div className="max-w-md mx-auto flex items-center justify-center h-[4.5rem] lg:hidden">
-              <img src={logoUrl} alt="Mastropizzas Logo" className="h-14 w-auto"/>
+              <img src={logoUrl} alt="MastroPizza Logo" className="h-14 w-auto"/>
             </div>
             {/* Desktop Header */}
             <div className="hidden lg:flex max-w-7xl mx-auto items-center justify-between h-[4.5rem] px-8">
-              <img src={logoUrl} alt="Mastropizzas Logo" className="h-14 w-auto cursor-pointer" onClick={() => setView('menu')} />
+              <img src={logoUrl} alt="MastroPizza Logo" className="h-14 w-auto cursor-pointer" onClick={() => setView('menu')} />
               <nav className="flex items-center space-x-6">
                   <button onClick={() => setView('menu')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Menú</button>
                   <button onClick={() => setView('about')} className="text-brand-text hover:text-brand-accent transition-colors font-medium">Nosotros</button>
@@ -1134,7 +1134,7 @@
       }
       
       function AboutPage({onBack}) {
-        const CONSULTA_MESSAGE = "Hola Mastropizzas Pergamino, quiero hacer una consulta";
+        const CONSULTA_MESSAGE = "Hola MastroPizza Pergamino, quiero hacer una consulta";
         const WHATSAPP_CONSULTA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(CONSULTA_MESSAGE)}`;
         const PHONE_NUMBER_URL = 'tel:438395';
 
@@ -1146,7 +1146,7 @@
                 <div className="bg-brand-card p-6 rounded-md border border-gray-700">
                     <h2 className="text-3xl font-extralight font-display text-brand-text mb-4">Sobre Nosotros</h2>
                     <p className="text-brand-text-light mb-4 font-light">
-                        Bienvenidos a <strong>Mastropizzas</strong>, tu rincón favorito en Pergamino para disfrutar de la mejor comida casera. Desde 2019, nos dedicamos a preparar pizzas y hamburguesas con los ingredientes más frescos y todo el amor que nos caracteriza.
+                        Bienvenidos a <strong>MastroPizza</strong>, tu rincón favorito en Pergamino para disfrutar de la mejor comida casera. Desde 2019, nos dedicamos a preparar pizzas y hamburguesas con los ingredientes más frescos y todo el amor que nos caracteriza.
                     </p>
                     <p className="text-brand-text-light mb-4 font-light">
                         Nuestro secreto es simple: recetas familiares, productos de calidad y un equipo apasionado por la buena cocina. ¡Gracias por elegirnos!
@@ -1523,7 +1523,7 @@
       function App() {
         const [view, setView] = useState('menu'); // 'menu', 'about', 'checkout'
         const [cart, setCart] = useState({}); // { itemId: quantity }
-        const [customItems, setCustomItems] = useState({}); // For MastroPizzas and HalfPizzas
+        const [customItems, setCustomItems] = useState({}); // For MastroPizza and HalfPizzas
         const [selectedItem, setSelectedItem] = useState(null);
         const [itemToQuickAdd, setItemToQuickAdd] = useState(null);
         const [halfPizzaToAdd, setHalfPizzaToAdd] = useState(null);
