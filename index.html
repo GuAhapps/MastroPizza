@@ -4,7 +4,7 @@
     <meta charset="utf-t-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F97316">
-    <title>MastroPizza - Pergamino</title>
+    <title>MastroPizza - Rosario</title>
     <link rel="icon" type="image/png" href="https://archive.org/download/favicom-01/favicom-01.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -130,8 +130,8 @@
         }).format(price);
       };
 
-      const SHIPPING_COST = 1000;
-      const WHATSAPP_NUMBER = '5492477654415';
+      const SHIPPING_COST = 1500;
+      const WHATSAPP_NUMBER = '5493415453660';
 
       // --- DATA ---
       const Category = {
@@ -249,31 +249,31 @@
         { id: 8, name: 'Hamburguesa Criolla', category: Category.Hamburguesas, description: 'Medallón de carne, jamón, queso, cebolla, morrón, huevo frito, tomate y lechuga, con papas fritas.', sizes: [{ name: 'Simple', price: 8000 }, { name: 'Doble', price: 9000 }, { name: 'Triple', price: 10000 }], ingredients: ['Medallón de carne', 'Jamón', 'Queso', 'Cebolla', 'Morrón', 'Huevo frito', 'Tomate', 'Lechuga', 'Papas fritas'], imageUrls: ['']},
         // Sánguches
         { id: 301, name: 'Sánguche de Lomito', category: Category.Sanguches, description: 'Lomito, jamón, queso, huevo frito, lechuga, tomate, con papas fritas.', price: 13000, ingredients: ['Pan', 'Lomito', 'Jamón', 'Queso', 'Huevo frito', 'Lechuga', 'Tomate', 'Papas fritas'], imageUrls: ['']},
-        { id: 302, name: 'Sánguche Juanacho', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan de miga. Disponible simple o con papas fritas.', sizes: [{ name: 'Simple', price: 5000 }, { name: 'con Papas', price: 6500 }], ingredients: ['Pan de miga', 'Jamón', 'Queso', 'Lechuga', 'Tomate'], imageUrls: ['']},
-        { id: 303, name: 'Sánguche Sacramento', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan árabe. Disponible simple o con papas fritas.', sizes: [{ name: 'Simple', price: 6000 }, { name: 'con Papas', price: 7500 }], ingredients: ['Pan árabe', 'Jamón', 'Queso', 'Lechuga', 'Tomate'], imageUrls: ['']},
+        { id: 302, name: 'Sánguche Juanacho', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan de miga. ¡Pedilo con papas fritas!', sizes: [{ name: 'Simple', price: 5000 }, { name: 'con Papas', price: 6500 }], ingredients: ['Pan de miga', 'Jamón', 'Queso', 'Lechuga', 'Tomate', 'Papas fritas (opcional)'], imageUrls: ['']},
+        { id: 303, name: 'Sánguche Sacramento', category: Category.Sanguches, description: 'Jamón, queso, lechuga y tomate en pan árabe. ¡Pedilo con papas fritas!', sizes: [{ name: 'Simple', price: 6000 }, { name: 'con Papas', price: 7500 }], ingredients: ['Pan árabe', 'Jamón', 'Queso', 'Lechuga', 'Tomate', 'Papas fritas (opcional)'], imageUrls: ['']},
         // Bebidas
-        { id: 401, name: 'Coca-Cola 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 402, name: 'Coca-Cola sin azúcar 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 403, name: 'Fanta 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 404, name: 'Fanta sin azúcar 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 405, name: 'Sprite 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 406, name: 'Aquarius Pera 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 407, name: 'Aquarius Manzana 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 408, name: 'Aquarius Pomelo 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 409, name: 'Aquarius Limonada 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 417, name: 'Aquarius Naranja 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 410, name: 'Schweppes Tónica 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 411, name: 'Schweppes Pomelo 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 4000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 412, name: 'Coca-Cola 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 416, name: 'Coca-Cola sin azúcar 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 413, name: 'Fanta 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 414, name: 'Sprite 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 418, name: 'Aquarius Pera 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 419, name: 'Aquarius Manzana 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 420, name: 'Aquarius Pomelo 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 421, name: 'Aquarius Limonada 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 422, name: 'Aquarius Naranja 500 ml', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
-        { id: 415, name: 'Agua Mineral 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin alcohol.', price: 2000, imageUrls: ['https://archive.org/download/sodasss/sodasss.png']},
+        { id: 401, name: 'Coca Cola 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 402, name: 'Coca Cola sin azúcar 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa sin azúcar', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 403, name: 'Fanta 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 404, name: 'Fanta sin azúcar 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa sin azúcar', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 405, name: 'Sprite 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 406, name: 'Aquarius Pera 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin gas', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 407, name: 'Aquarius Manzana 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin gas', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 408, name: 'Aquarius Pomelo 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin gas', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 409, name: 'Aquarius Limonada 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin gas', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 410, name: 'Schweppes Tónica 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 411, name: 'Schweppes Pomelo 1,5 Lts', category: Category.Bebidas, description: 'Bebida gaseosa', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 412, name: 'Coca Cola 500ml', category: Category.Bebidas, description: 'Bebida gaseosa', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 413, name: 'Fanta 500ml', category: Category.Bebidas, description: 'Bebida gaseosa', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 414, name: 'Sprite 500ml', category: Category.Bebidas, description: 'Bebida gaseosa', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 415, name: 'Agua Mineral 1,5 Lts', category: Category.Bebidas, description: 'Agua sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 416, name: 'Aquarius Naranja 1,5 Lts', category: Category.Bebidas, description: 'Bebida sin gas', price: 4000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 417, name: 'Coca-Cola sin azúcar 500 ml', category: Category.Bebidas, description: 'Bebida gaseosa sin azúcar', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 418, name: 'Aquarius Pera 500 ml', category: Category.Bebidas, description: 'Bebida sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 419, name: 'Aquarius Manzana 500 ml', category: Category.Bebidas, description: 'Bebida sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 420, name: 'Aquarius Pomelo 500 ml', category: Category.Bebidas, description: 'Bebida sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 421, name: 'Aquarius Limonada 500 ml', category: Category.Bebidas, description: 'Bebida sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
+        { id: 422, name: 'Aquarius Naranja 500 ml', category: Category.Bebidas, description: 'Bebida sin gas', price: 2000, imageUrls: ['https://ia801004.us.archive.org/3/items/coca-1.5/coca-1.5.png'] },
       ];
 
       const itemsById = menuItems.reduce((acc, item) => {
@@ -340,7 +340,7 @@
             <nav className="sticky top-[4.5rem] lg:top-0 bg-brand-header z-10 border-b border-gray-700 lg:rounded-t-md">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center pt-4 pb-2">
-                      <h1 className="text-3xl font-light text-brand-text uppercase tracking-wider font-display">Ciudad de Pergamino</h1>
+                      <h1 className="text-3xl font-light text-brand-text uppercase tracking-wider font-display">Ciudad de Rosario</h1>
                     </div>
                     <div ref={navRef} className="flex space-x-1 overflow-x-auto no-scrollbar px-2">
                       {categories.map(category => (
@@ -793,9 +793,9 @@
       }
 
       function ComboBuilderModal({ item, onClose, onConfirm }) {
-        const [modalStep, setModalStep] = useState('flavor'); // 'flavor' or 'drink'
         const [selectedFlavor, setSelectedFlavor] = useState(null);
         const [selectedDrink, setSelectedDrink] = useState(null);
+        const [step, setStep] = useState('flavor'); // 'flavor' or 'drink'
         
         const pizzaFlavors = useMemo(() => 
           menuItems.filter(i => i.category === Category.Pizzas && !i.isMastro && !i.isPromo), 
@@ -803,21 +803,28 @@
         );
 
         const drinkOptions = useMemo(() =>
-          menuItems.filter(i => i.category === Category.Bebidas && i.name.includes('500 ml')),
-          []
-        );
+            menuItems.filter(i => i.category === Category.Bebidas && i.name.includes('500ml') || i.name.includes('500 ml')),
+        []);
+
+        useEffect(() => {
+            if (item) {
+                setSelectedFlavor(null);
+                setSelectedDrink(null);
+                setStep('flavor');
+            }
+        }, [item]);
 
         if (!item) return null;
 
         const handleNextStep = () => {
             if (selectedFlavor) {
-                setModalStep('drink');
+                setStep('drink');
             }
         };
-        
+
         const handleGoBack = () => {
-            setModalStep('flavor');
-            setSelectedDrink(null); 
+            setStep('flavor');
+            setSelectedDrink(null);
         };
 
         const handleConfirm = () => {
@@ -830,49 +837,44 @@
           <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center animate-fade-in p-4" onClick={onClose}>
             <div className="bg-brand-card rounded-md shadow-xl w-full max-w-md h-[90vh] flex flex-col animate-fade-in-up border border-gray-600" onClick={e => e.stopPropagation()}>
               {/* Header */}
-              <div className="p-4 border-b border-gray-700 flex-shrink-0 text-center relative">
-                {modalStep === 'drink' && (
-                  <button onClick={handleGoBack} className="absolute top-4 left-4 z-10 bg-gray-900/80 backdrop-blur-sm rounded-md p-2 text-brand-text hover:bg-gray-800/90 transition-transform transform hover:scale-110" aria-label="Volver a elegir sabor">
-                    <ChevronLeftIcon />
-                  </button>
-                )}
+              <div className="p-4 border-b border-gray-700 flex-shrink-0 text-center">
                 <h2 className="text-2xl font-extralight text-brand-accent font-display">Arma tu {item.name}</h2>
                 <p className="text-brand-text-light font-light mt-1">{item.description}</p>
                 <p className="font-semibold mt-2 text-brand-text">
-                  {modalStep === 'flavor' ? 'Elegí tu gusto de pizza:' : 'Elegí tu bebida:'}
+                    {step === 'flavor' ? 'Paso 1: Elegí tu gusto de pizza' : 'Paso 2: Elegí tu bebida'}
                 </p>
               </div>
               
-              {/* Flavor/Drink List */}
+              {/* Content List */}
               <div className="flex-grow overflow-y-auto p-4 space-y-2 no-scrollbar">
-                {modalStep === 'flavor' ? (
-                    pizzaFlavors.map(flavor => (
-                      <button 
-                        key={flavor.id} 
-                        onClick={() => setSelectedFlavor(flavor)}
-                        className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
-                          selectedFlavor?.id === flavor.id 
-                          ? 'bg-brand-accent/20 border-brand-accent' 
-                          : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
-                        }`}
-                      >
-                        <h4 className="font-semibold text-brand-text">{flavor.name.replace(/^Pizza (de )?/, '')}</h4>
-                      </button>
-                    ))
+                {step === 'flavor' ? (
+                  pizzaFlavors.map(flavor => (
+                    <button 
+                      key={flavor.id} 
+                      onClick={() => setSelectedFlavor(flavor)}
+                      className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
+                        selectedFlavor?.id === flavor.id 
+                        ? 'bg-brand-accent/20 border-brand-accent' 
+                        : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
+                      }`}
+                    >
+                      <h4 className="font-semibold text-brand-text">{flavor.name.replace(/^Pizza (de )?/, '')}</h4>
+                    </button>
+                  ))
                 ) : (
-                    drinkOptions.map(drink => (
-                      <button 
-                        key={drink.id} 
-                        onClick={() => setSelectedDrink(drink)}
-                        className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
-                          selectedDrink?.id === drink.id
-                          ? 'bg-brand-accent/20 border-brand-accent' 
+                  drinkOptions.map(drink => (
+                    <button
+                      key={drink.id}
+                      onClick={() => setSelectedDrink(drink)}
+                      className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
+                        selectedDrink?.id === drink.id
+                          ? 'bg-brand-accent/20 border-brand-accent'
                           : 'bg-gray-800 border-gray-700 hover:bg-gray-700'
-                        }`}
-                      >
-                        <h4 className="font-semibold text-brand-text">{drink.name.replace(' 500 ml', '')}</h4>
-                      </button>
-                    ))
+                      }`}
+                    >
+                      <h4 className="font-semibold text-brand-text">{drink.name}</h4>
+                    </button>
+                  ))
                 )}
               </div>
 
@@ -883,21 +885,26 @@
                     <span className="text-2xl font-bold text-brand-accent">{formatPrice(item.price)}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <button onClick={onClose} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
-                    {modalStep === 'flavor' ? (
-                        <button 
-                          onClick={handleNextStep} 
-                          disabled={!selectedFlavor} 
-                          className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
-                          Elegir Bebida
-                        </button>
+                    {step === 'flavor' ? (
+                        <button onClick={onClose} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Cancelar</button>
                     ) : (
-                        <button 
-                          onClick={handleConfirm} 
-                          disabled={!selectedDrink} 
-                          className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
-                          Agregar al Carrito
-                        </button>
+                        <button onClick={handleGoBack} className="bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors">Atrás</button>
+                    )}
+                    
+                    {step === 'flavor' ? (
+                      <button 
+                        onClick={handleNextStep} 
+                        disabled={!selectedFlavor} 
+                        className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                        Elegir Bebida
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={handleConfirm} 
+                        disabled={!selectedDrink} 
+                        className="bg-brand-accent text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition-transform transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100">
+                        Agregar al Carrito
+                      </button>
                     )}
                   </div>
               </div>
@@ -1086,7 +1093,7 @@
           if (size) {
             const sizedItem = {
               ...item,
-              id: `${item.id}-${size.name.toLowerCase()}`,
+              id: `${item.id}-${size.name.toLowerCase().replace(/\s/g, '-')}`,
               name: `${item.name} (${size.name})`,
               price: size.price,
               sizes: undefined, // Clear sizes for the cart item
@@ -1146,7 +1153,7 @@
                 <div className="p-4 space-y-8">
                     {categoryOrder.map(category => {
                         const itemsInCategory = menuItems.filter(item => 
-                            (category === Category.Bebidas ? item.category === category : (item.category === category && (category !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903))
+                            item.category === category && (category !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903
                         );
                         if (itemsInCategory.length === 0) return null;
                         
@@ -1177,7 +1184,7 @@
 
         const renderFilteredItems = () => {
             const filteredItems = menuItems.filter(item => 
-                (selectedCategory === Category.Bebidas ? item.category === selectedCategory : (item.category === selectedCategory && (selectedCategory !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903))
+                item.category === selectedCategory && (selectedCategory !== Category.Pizzas || item.isMastro || item.isPromo) && item.id !== 903
             );
             const isListView = selectedCategory === Category.Hamburguesas || selectedCategory === Category.Sanguches || selectedCategory === Category.Bebidas;
             
@@ -1208,9 +1215,9 @@
       }
       
       function AboutPage({onBack}) {
-        const CONSULTA_MESSAGE = "Hola MastroPizza Pergamino, quiero hacer una consulta";
+        const CONSULTA_MESSAGE = "Hola MastroPizza Rosario, quiero hacer una consulta";
         const WHATSAPP_CONSULTA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(CONSULTA_MESSAGE)}`;
-        const PHONE_NUMBER_URL = 'tel:438395';
+        const PHONE_NUMBER_URL = 'tel:3414247561';
 
         return (
            <div className="p-4 md:p-6 animate-fade-in-up">
@@ -1220,23 +1227,23 @@
                 <div className="bg-brand-card p-6 rounded-md border border-gray-700">
                     <h2 className="text-3xl font-extralight font-display text-brand-text mb-4">Sobre Nosotros</h2>
                     <p className="text-brand-text-light mb-4 font-light">
-                        Bienvenidos a <strong>MastroPizza</strong>, tu rincón favorito en Pergamino para disfrutar de la mejor comida casera. Desde 2019, nos dedicamos a preparar pizzas y hamburguesas con los ingredientes más frescos y todo el amor que nos caracteriza.
+                        Bienvenidos a <strong>MastroPizza</strong>, tu rincón favorito en Rosario para disfrutar de la mejor comida casera. Desde 2019, nos dedicamos a preparar pizzas y hamburguesas con los ingredientes más frescos y todo el amor que nos caracteriza.
                     </p>
                     <p className="text-brand-text-light mb-4 font-light">
                         Nuestro secreto es simple: recetas familiares, productos de calidad y un equipo apasionado por la buena cocina. ¡Gracias por elegirnos!
                     </p>
                     <div className="border-t border-gray-700 my-4"></div>
                     <h3 className="text-xl font-extralight text-brand-text mb-2">Horarios</h3>
-                    <p className="text-brand-text-light font-light">Lunes a Sábados: 11:30hs a 14:00hs - 19:30hs a 23:50hs</p>
-                    <p className="text-brand-text-light font-light mb-4">Domingo: 19:30hs a 23:50hs</p>
+                    <p className="text-brand-text-light font-light">Lunes a Sábados: 11:30hs a 14 hs - 19:30hs a 23:30hs</p>
+                    <p className="text-brand-text-light font-light mb-4">Domingo: 19:30 a 23:30 hs</p>
 
                     <div className="border-t border-gray-700 my-4"></div>
                     <h3 className="text-xl font-extralight text-brand-text mb-2">Ubicación</h3>
                     <p className="text-brand-text-light font-light flex items-center mb-3">
-                       <MapPinIcon /> Alberti 369 entre Av. de Mayo y Pinto
+                       <MapPinIcon /> Mendoza 437
                     </p>
                     <a 
-                        href="https://maps.app.goo.gl/P26aFEKVc7eA6wa57" 
+                        href="https://maps.app.goo.gl/cdRiMND6RvVBuk899" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center w-full bg-gray-700 text-brand-text py-3 rounded-md font-semibold hover:bg-gray-600 transition-colors"
@@ -1266,7 +1273,7 @@
                 <div className="text-center mt-6 text-brand-text-light text-sm font-light text-[125%]">
                   <p>App creada por Keila Portillo</p>
                   <p>2477-238364</p>
-                  <p>Pergamino - Buenos Aires</p>
+                  <p>Rosario - Santa Fe</p>
                 </div>
            </div>
         );
@@ -1658,7 +1665,7 @@
 
         const addToCart = useCallback((item, quantity) => {
             const itemId = item.id;
-            if (item.isHalf || item.isQuarter || String(item.id).startsWith('mastro-') || item.isCombo || item.name.includes('(')) {
+            if (item.isHalf || item.isQuarter || String(item.id).startsWith('mastro-') || item.isCombo || (item.name.includes('(') && !item.id.startsWith('mastro-'))) {
                 setCustomItems(prev => ({...prev, [itemId]: item}));
             }
             
@@ -1755,7 +1762,7 @@
                 ...comboItem,
                 id: comboId,
                 name: 'Combo Mini Mastro',
-                description: `Sabor: ${selectedFlavor.name.replace(/^Pizza (de )?/, '')}, Bebida: ${selectedDrink.name.replace(' 500 ml', '')}`,
+                description: `Sabor: ${selectedFlavor.name.replace(/^Pizza (de )?/, '')}, Bebida: ${selectedDrink.name}`,
                 price: comboItem.price,
                 isCombo: true,
             };
